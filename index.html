@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f6ede3" />
+  <meta name="description" content="LUQMA Little Bites — Sunday homemade food ordering." />
+  <title>LUQMA | Little Bites</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+  <header class="site-header"><div class="container nav">
+    <div class="brand-mini"><span class="brand-mark">L</span><div><strong>LUQMA</strong><small>little bites.</small></div></div>
+    <div class="status-pill" id="statusPill"><span class="status-dot"></span><span id="statusText">Checking status...</span></div>
+  </div></header>
+
+  <main>
+    <section class="hero container">
+      <div class="hero-copy">
+        <p class="eyebrow">Sunday homemade specials</p>
+        <h1>Small bites.<br><span>Big comfort.</span></h1>
+        <p class="hero-text">Freshly prepared, limited-quantity meals made for our neighbourhood. Order in a few taps and confirm directly on WhatsApp.</p>
+        <div class="hero-actions"><a class="primary-link" href="#menuSection">View today's menu</a><a class="secondary-link hidden" id="groupLinkTop" href="#" target="_blank" rel="noopener">Join WhatsApp group</a></div>
+        <div class="hero-meta"><div><strong id="menuNameHero">Sunday Special</strong><span>Current menu</span></div><div><strong>Limited plates</strong><span>Prepared in small batches</span></div><div><strong>WhatsApp order</strong><span>No account required</span></div></div>
+      </div>
+      <div class="hero-card"><div class="hero-food-art"><div class="plate-ring ring-one"></div><div class="plate-ring ring-two"></div><div class="food-emoji">🍛</div><span class="sparkle s1">✦</span><span class="sparkle s2">✧</span><span class="sparkle s3">✦</span></div><div class="hero-card-copy"><span>LUQMA</span><strong>Made with love.</strong><small>Fresh Sunday food for your society.</small></div></div>
+    </section>
+
+    <section class="menu-section" id="menuSection"><div class="container">
+      <div class="section-heading"><div><p class="eyebrow">What's cooking</p><h2 id="menuTitle">Sunday Special</h2><p id="menuSubtitle">Choose your dishes and quantity below.</p></div><div class="counter-note"><span>🔥</span><p><strong>Limited quantity menu</strong><br>Quantities shown are controlled from <code>menu.js</code>.</p></div></div>
+      <div id="closedBanner" class="closed-banner hidden"><div class="closed-icon">🌙</div><div><strong>Orders are closed right now</strong><p>LUQMA is not taking new orders at the moment. Check the WhatsApp group for the next update.</p></div></div>
+      <div id="menuGrid" class="menu-grid"></div>
+      <div id="noMenu" class="empty-state hidden"><span>🥘</span><h3>No active dishes yet</h3><p>The next Sunday menu will appear here once it is enabled.</p></div>
+    </div></section>
+
+    <section class="community-section"><div class="container community-card"><div><p class="eyebrow">Stay in the loop</p><h2>Join the LUQMA WhatsApp group</h2><p>Get Sunday menu drops, live counter updates, sold-out alerts and next-week announcements.</p></div><a class="whatsapp-outline hidden" id="groupLinkBottom" href="#" target="_blank" rel="noopener">Join WhatsApp Group</a></div></section>
+  </main>
+
+  <div class="cart-bar" id="cartBar"><button class="cart-bar-inner container" id="openCartBtn" type="button"><div><strong id="cartCount">0 items</strong><span>Tap to review your order</span></div><strong id="cartTotal">₹0</strong></button></div>
+
+  <div class="overlay hidden" id="checkoutOverlay" aria-hidden="true"><div class="checkout-sheet" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle"><div class="sheet-handle"></div><div class="sheet-header"><div><p class="eyebrow">Your order</p><h2 id="checkoutTitle">Almost ready</h2></div><button class="icon-btn" id="closeCheckoutBtn" type="button" aria-label="Close">×</button></div><div class="order-lines" id="orderLines"></div><div class="order-total-row"><span>Total</span><strong id="checkoutTotal">₹0</strong></div><form id="orderForm" class="order-form"><label><span>Name</span><input id="customerName" type="text" required maxlength="60" placeholder="Your name" /></label><label><span>Phone</span><input id="customerPhone" type="tel" inputmode="numeric" required maxlength="15" placeholder="10-digit mobile number" /></label><label><span>Address / Flat No.</span><textarea id="customerAddress" required maxlength="180" rows="3" placeholder="Flat number, wing/building and society"></textarea></label><button class="whatsapp-btn" type="submit"><span class="wa-icon">✆</span><span>Send Order on WhatsApp</span><span>→</span></button><p class="form-note">WhatsApp will open with your complete order already typed. Just press Send there to confirm it.</p></form></div></div>
+
+  <div class="overlay hidden" id="closedOverlay" aria-hidden="true"><div class="simple-modal"><div class="modal-emoji">🌙</div><h2>Orders are closed</h2><p>LUQMA is not accepting new orders right now.</p><button class="primary-button" id="closeClosedModal" type="button">Okay</button></div></div>
+
+  <footer><div class="container footer-row"><div><strong>LUQMA</strong><span>little bites.</span></div><p>Made with love. ❤️</p></div></footer>
+  <script src="menu.js"></script><script src="script.js"></script>
+</body>
+</html>
