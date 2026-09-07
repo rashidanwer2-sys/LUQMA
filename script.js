@@ -87,9 +87,7 @@ function renderMenu(){
         </div>
         <p class="dish-desc">${esc(item.description||"")}</p>
         <div class="dish-bottom">
-          <span class="stock ${sold?"sold":low?"low":""}">
-            ${sold?"Sold out":low?`Only ${available} left`:`${available} plates available`}
-          </span>
+          ${sold?`<span class="stock sold">Sold out</span>`:""}
           ${sold
             ?`<span class="sold-badge">SOLD OUT</span>`
             :`<div class="qty-control">
@@ -208,11 +206,11 @@ function updatePaymentUI(){
     buttonText.textContent="Choose payment method";
   }else if(method==="COD"){
     button.disabled=false;
-    buttonText.textContent="Send COD Order on WhatsApp";
+    buttonText.textContent="Place COD Order";
   }else{
     button.disabled=!state.paymentMarkedPaid;
     buttonText.textContent=state.paymentMarkedPaid
-      ?"Send Paid Order on WhatsApp"
+      ?"Place Paid Order"
       :"Complete payment first";
   }
 }

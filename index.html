@@ -24,20 +24,29 @@
         <p class="eyebrow">Sunday homemade specials</p>
         <h1>Small bites.<br><span>Big comfort.</span></h1>
         <p class="hero-text">Freshly prepared, limited-quantity meals made for our neighbourhood. Order in a few taps and confirm directly on WhatsApp.</p>
-        <div class="hero-actions"><a class="primary-link" href="#menuSection">View today's menu</a><a class="secondary-link" id="groupLinkTop" href="#">Click here to join our WhatsApp Community</a></div>
+        <div class="hero-actions"><a class="primary-link" href="#menuSection">View today's menu</a></div>
         <div class="hero-meta"><div><strong id="menuNameHero">Sunday Special</strong><span>Current menu</span></div><div><strong>Limited plates</strong><span>Prepared in small batches</span></div><div><strong>WhatsApp order</strong><span>No account required</span></div></div>
       </div>
       <div class="hero-card"><div class="hero-food-art"><div class="plate-ring ring-one"></div><div class="plate-ring ring-two"></div><div class="food-emoji hero-image-wrap"><img src="https://images.pexels.com/photos/9609860/pexels-photo-9609860.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Chicken biryani" /></div><span class="sparkle s1">✦</span><span class="sparkle s2">✧</span><span class="sparkle s3">✦</span></div><div class="hero-card-copy"><span>LUQMA</span><strong>Made with love.</strong><small>Fresh Sunday food for your society.</small></div></div>
-    </section>
+    <a class="whatsapp-outline community-bottom-btn" id="groupLinkBottom" href="#">
+          Click here to join our WhatsApp Community
+        </a>
+      </section>
 
     <section class="menu-section" id="menuSection"><div class="container">
       <div class="section-heading"><div><p class="eyebrow">What's cooking</p><h2 id="menuTitle">Sunday Special</h2><p id="menuSubtitle">Choose your dishes and quantity below.</p></div><div class="counter-note"><span>🔥</span><p><strong>Limited quantity menu</strong><br>Quantities shown are controlled from <code>menu.js</code>.</p></div></div>
       <div id="closedBanner" class="closed-banner hidden"><div class="closed-icon">🌙</div><div><strong>Orders are closed right now</strong><p>LUQMA is not taking new orders at the moment. Check the WhatsApp group for the next update.</p></div></div>
       <div id="menuGrid" class="menu-grid"></div>
       <div id="noMenu" class="empty-state hidden"><span>🥘</span><h3>No active dishes yet</h3><p>The next Sunday menu will appear here once it is enabled.</p></div>
-    </div></section>
+    </div><a class="whatsapp-outline community-bottom-btn" id="groupLinkBottom" href="#">
+          Click here to join our WhatsApp Community
+        </a>
+      </section>
 
-    <section class="community-section"><div class="container community-card"><div><p class="eyebrow">Stay in the loop</p><h2>Join the LUQMA WhatsApp group</h2><p>Get Sunday menu drops, live counter updates, sold-out alerts and next-week announcements.</p></div><a class="whatsapp-outline" id="groupLinkBottom" href="#" target="_blank" rel="noopener">Click here to join our WhatsApp Community</a></div></section>
+    <section class="community-section"><div class="container community-card"><div><p class="eyebrow">Stay in the loop</p><h2>Join the LUQMA WhatsApp group</h2><p>Get Sunday menu drops, live counter updates, sold-out alerts and next-week announcements.</p></div></div><a class="whatsapp-outline community-bottom-btn" id="groupLinkBottom" href="#">
+          Click here to join our WhatsApp Community
+        </a>
+      </section>
   </main>
 
   <div class="cart-bar" id="cartBar"><button class="cart-bar-inner container" id="openCartBtn" type="button"><div><strong id="cartCount">0 items</strong><span>Tap to review your order</span></div><strong id="cartTotal">₹0</strong></button></div>
@@ -117,15 +126,12 @@
     </p>
   </div>
 
-  <button class="whatsapp-btn" id="finalOrderBtn" type="submit" disabled>
-    <span class="wa-icon">✆</span>
+  <button class="final-order-btn" id="finalOrderBtn" type="submit" disabled>
     <span id="finalOrderBtnText">Choose payment method</span>
     <span>→</span>
   </button>
 
-  <p class="form-note">
-    Only one WhatsApp message is created with the full order and payment status.
-  </p>
+  
 </form></div></div>
 
   <div class="overlay hidden" id="closedOverlay" aria-hidden="true"><div class="simple-modal"><div class="modal-emoji">🌙</div><h2>Orders are closed</h2><p>LUQMA is not accepting new orders right now.</p><button class="primary-button" id="closeClosedModal" type="button">Okay</button></div></div>
