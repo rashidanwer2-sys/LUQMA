@@ -407,3 +407,4 @@ function safeJs(value = "") {
     .replaceAll("\\", "\\\\")
     .replaceAll("'", "\\'");
 }
+ 
