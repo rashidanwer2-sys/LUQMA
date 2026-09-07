@@ -1,67 +1,63 @@
-// ======================================================
-// LUQMA WEEKLY CONTROL FILE
-// Edit only this file before each Sunday.
-// ======================================================
-
 const LUQMA_CONFIG = {
   shopOpen: true,
   menuName: "Sunday Special",
+
+  // WhatsApp order number
   orderWhatsApp: "918386839883",
 
-  // Paste your WhatsApp group invite link below later.
+  // Paste your actual WhatsApp Community/Group invite URL here
   whatsappGroupLink: "https://chat.whatsapp.com/Ejlv5Ig6wrPHNHMwYOwmPM",
 
-  // PAYMENT SETTINGS - placeholders for testing only
+  // Placeholder UPI details for testing
+  // Replace these before accepting real payments.
   upiId: "luqma.demo@upi",
   upiPayeeName: "LUQMA Little Bites",
 
   items: [
     {
       id: "CB01",
-      image: "https://images.pexels.com/photos/4224314/pexels-photo-4224314.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop",
       name: "Chicken Dum Biryani",
       description: "Aromatic dum biryani served with raita and fresh salad.",
       price: 220,
       quantity: 15,
-      active: true
+      active: true,
+      image: "https://images.pexels.com/photos/1624487/pexels-photo-1624487.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop"
     },
     {
       id: "MB01",
-      image: "https://images.pexels.com/photos/16229982/pexels-photo-16229982.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop",
       name: "Mutton Dum Biryani",
       description: "Slow-cooked mutton dum biryani served with raita and salad.",
       price: 280,
       quantity: 10,
-      active: true
+      active: true,
+      image: "https://images.pexels.com/photos/16020573/pexels-photo-16020573.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop"
     },
     {
       id: "CK01",
-      image: "https://images.pexels.com/photos/7474082/pexels-photo-7474082.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop",
       name: "Chicken Kebab",
       description: "Juicy homemade chicken kebabs, freshly prepared in small batches.",
       price: 180,
       quantity: 8,
-      active: true
+      active: true,
+      image: "https://images.pexels.com/photos/6089832/pexels-photo-6089832.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop"
     },
     {
       id: "MK01",
-      image: "https://images.pexels.com/photos/15058960/pexels-photo-15058960.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop",
       name: "Mutton Kebab",
-      description: "Rich, flavourful homemade mutton kebabs.",
+      description: "Tender spiced mutton kebabs with a smoky finish.",
       price: 220,
       quantity: 6,
-      active: true
+      active: true,
+      image: "https://images.pexels.com/photos/15058960/pexels-photo-15058960.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop"
     },
     {
       id: "MC01",
-      image: "https://images.pexels.com/photos/10615283/pexels-photo-10615283.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop",
       name: "Malai Chicken + Paratha",
       description: "Creamy malai chicken served with soft paratha and salad.",
       price: 240,
       quantity: 8,
-      active: true
+      active: true,
+      image: "https://images.pexels.com/photos/7625056/pexels-photo-7625056.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop"
     }
-
-    // Add more menu items here. Keep active:false when not needed.
   ]
 };

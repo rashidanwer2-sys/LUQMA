@@ -3,143 +3,245 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#f6ede3" />
-  <meta name="description" content="LUQMA Little Bites — Sunday homemade food ordering." />
-  <title>LUQMA | Little Bites</title>
+  <meta name="theme-color" content="#fff7ec" />
+  <meta name="description" content="LUQMA — little bites. Homemade Sunday specials made with love." />
+  <title>LUQMA — little bites.</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
-  <header class="site-header"><div class="container nav">
-    <div class="brand-mini"><span class="brand-mark">L</span><div><strong>LUQMA</strong><small>little bites.</small></div></div>
-    <div class="status-pill" id="statusPill"><span class="status-dot"></span><span id="statusText">Checking status...</span></div>
-  </div></header>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="LUQMA home">
+        <span class="brand-mark">L</span>
+        <span class="brand-copy">
+          <strong>LUQMA</strong>
+          <small>little bites.</small>
+        </span>
+      </a>
 
-  <main>
-    <section class="hero container">
-      <div class="hero-copy">
-        <p class="eyebrow">Sunday homemade specials</p>
-        <h1>Small bites.<br><span>Big comfort.</span></h1>
-        <p class="hero-text">Freshly prepared, limited-quantity meals made for our neighbourhood. Order in a few taps and confirm directly on WhatsApp.</p>
-        <div class="hero-actions"><a class="primary-link" href="#menuSection">View today's menu</a></div>
-        <div class="hero-meta"><div><strong id="menuNameHero">Sunday Special</strong><span>Current menu</span></div><div><strong>Limited plates</strong><span>Prepared in small batches</span></div><div><strong>WhatsApp order</strong><span>No account required</span></div></div>
+      <div class="status-pill" id="statusPill">
+        <span class="status-dot"></span>
+        <span id="statusText">Orders Open</span>
       </div>
-      <div class="hero-card"><div class="hero-food-art"><div class="plate-ring ring-one"></div><div class="plate-ring ring-two"></div><div class="food-emoji hero-image-wrap"><img src="https://images.pexels.com/photos/4224314/pexels-photo-4224314.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop" alt="Chicken biryani" /></div><span class="sparkle s1">✦</span><span class="sparkle s2">✧</span><span class="sparkle s3">✦</span></div><div class="hero-card-copy"><span>LUQMA</span><strong>Made with love.</strong><small>Fresh Sunday food for your society.</small></div></div>
-    
-      </section>
-
-    <section class="menu-section" id="menuSection"><div class="container">
-      <div class="section-heading"><div><p class="eyebrow">What's cooking</p><h2 id="menuTitle">Sunday Special</h2><p id="menuSubtitle">Choose your dishes and quantity below.</p></div></div>
-      <div id="closedBanner" class="closed-banner hidden"><div class="closed-icon">🌙</div><div><strong>Orders are closed right now</strong><p>LUQMA is not taking new orders at the moment. Check the WhatsApp group for the next update.</p></div></div>
-      <div id="menuGrid" class="menu-grid"></div>
-      <div id="noMenu" class="empty-state hidden"><span>🥘</span><h3>No active dishes yet</h3><p>The next Sunday menu will appear here once it is enabled.</p></div>
     </div>
-      </section>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Made with love</p>
+          <h1 id="menuNameHero">Sunday Special</h1>
+          <p class="hero-text">
+            Fresh homemade food, prepared in small batches for a relaxed Sunday meal.
+          </p>
+
+          <div class="hero-actions">
+            <a class="primary-link" href="#menu">Explore Menu</a>
+            <span class="hero-note">Pre-order while slots are open</span>
+          </div>
+        </div>
+
+        <div class="hero-image-wrap">
+          <img
+            class="hero-image"
+            src="https://images.pexels.com/photos/1624487/pexels-photo-1624487.jpeg?auto=compress&cs=tinysrgb&w=1400&fit=crop"
+            alt="Indian biryani served in a bowl"
+          />
+          <div class="hero-badge">
+            <strong>LUQMA</strong>
+            <span>little bites.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="closedBanner" class="closed-banner hidden">
+      <div class="container">
+        <strong>Orders are currently closed.</strong>
+        <span>Please check back for the next LUQMA menu.</span>
+      </div>
+    </section>
+
+    <section class="menu-section" id="menu">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">This week</p>
+            <h2 id="menuTitle">Sunday Special</h2>
+            <p>Choose your dishes and quantity below.</p>
+          </div>
+        </div>
+
+        <div class="menu-grid" id="menuGrid"></div>
+
+        <div class="empty-state hidden" id="noMenu">
+          <strong>No dishes are active right now.</strong>
+          <span>Please check back soon.</span>
+        </div>
+      </div>
+    </section>
 
     <section class="community-section">
-      <div class="container community-card">
-        <div class="community-copy">
-          <p class="eyebrow">Stay in the loop</p>
-          <h2>Join the LUQMA WhatsApp group</h2>
-          <p>Get Sunday menu drops, availability updates and next-week announcements.</p>
-          <a class="whatsapp-outline community-bottom-btn" id="groupLinkBottom" href="#">
-            Click here to join our WhatsApp Community
-          </a>
+      <div class="container">
+        <div class="community-card">
+          <div class="community-copy">
+            <p class="eyebrow light">Stay in the loop</p>
+            <h2>Join the LUQMA WhatsApp group</h2>
+            <p>
+              Get Sunday menu drops, availability updates and next-week announcements.
+            </p>
+
+            <a class="community-btn" id="groupLinkBottom" href="#">
+              Click here to join our WhatsApp Community
+            </a>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
-  <div class="cart-bar" id="cartBar"><button class="cart-bar-inner container" id="openCartBtn" type="button"><div><strong id="cartCount">0 items</strong><span>Tap to review your order</span></div><strong id="cartTotal">₹0</strong></button></div>
-
-  <div class="overlay hidden" id="checkoutOverlay" aria-hidden="true"><div class="checkout-sheet" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle"><div class="sheet-handle"></div><div class="sheet-header"><div><p class="eyebrow">Your order</p><h2 id="checkoutTitle">Almost ready</h2></div><button class="icon-btn" id="closeCheckoutBtn" type="button" aria-label="Close">×</button></div><div class="order-lines" id="orderLines"></div><div class="order-total-row"><span>Total</span><strong id="checkoutTotal">₹0</strong></div><form id="orderForm" class="order-form">
-  <label>
-    <span>Name</span>
-    <input id="customerName" type="text" required maxlength="60" placeholder="Your name" />
-  </label>
-
-  <label>
-    <span>Phone</span>
-    <input id="customerPhone" type="tel" inputmode="numeric" required maxlength="15" placeholder="10-digit mobile number" />
-  </label>
-
-  <label>
-    <span>Address / Flat No.</span>
-    <textarea id="customerAddress" required maxlength="180" rows="3" placeholder="Flat number, wing/building and society"></textarea>
-  </label>
-
-  <fieldset class="payment-box">
-    <legend>Payment Method</legend>
-
-    <div class="payment-choice-grid">
-      <label class="payment-choice">
-        <input type="radio" name="paymentMethod" value="UPI" />
-        <span class="payment-copy">
-          <strong><span class="payment-icon">₹</span> Pay Online</strong>
-          <small>UPI / Google Pay / PhonePe / BHIM</small>
-        </span>
-      </label>
-
-      <label class="payment-choice">
-        <input type="radio" name="paymentMethod" value="COD" />
-        <span class="payment-copy">
-          <strong><span class="payment-icon">₹</span> Cash on Delivery</strong>
-          <small>Pay when the order is delivered</small>
-        </span>
-      </label>
-    </div>
-  </fieldset>
-
-  <div id="upiPanel" class="upi-panel hidden">
-    <div class="upi-heading">
-      <div>
-        <span>Amount to pay</span>
-        <strong id="upiAmount">₹0</strong>
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="brand-mark small">L</span>
+        <div>
+          <strong>LUQMA</strong>
+          <span>little bites. Made with love.</span>
+        </div>
       </div>
-      <span class="upi-badge">UPI</span>
+      <small>Homemade Sunday specials.</small>
     </div>
+  </footer>
 
-    <div class="upi-grid">
-      <div class="qr-wrap">
-        <img id="upiQrImage" alt="UPI QR code" />
-        <small>Scan with any UPI app</small>
-      </div>
-
-      <div class="upi-details">
-        <span>UPI ID</span>
-        <strong id="upiIdText">luqma.demo@upi</strong>
-        <small>Payee: <span id="upiPayeeText">LUQMA Little Bites</span></small>
-
-        <a class="upi-pay-btn" id="upiPayBtn" href="#">
-          Pay <span id="upiPayBtnAmount">₹0</span> via UPI
-        </a>
-      </div>
+  <div class="cart-bar" id="cartBar">
+    <div class="cart-info">
+      <span id="cartCount">0 items</span>
+      <strong id="cartTotal">₹0</strong>
     </div>
-
-    <label class="paid-confirm">
-      <input id="paidConfirm" type="checkbox" />
-      <span>I have completed the UPI payment</span>
-    </label>
-
-    <p class="payment-warning">
-      LUQMA will verify the transaction before confirming the order.
-    </p>
+    <button type="button" class="cart-btn" id="openCartBtn">
+      Order Now
+      <span>→</span>
+    </button>
   </div>
 
-  <button class="final-order-btn" id="finalOrderBtn" type="submit" disabled>
-    <span id="finalOrderBtnText">Choose payment method</span>
-    <span>→</span>
-  </button>
+  <div class="overlay hidden" id="checkoutOverlay" aria-hidden="true">
+    <div class="checkout-sheet" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
+      <div class="checkout-head">
+        <div>
+          <p class="eyebrow">Checkout</p>
+          <h2 id="checkoutTitle">Review your order</h2>
+        </div>
+        <button type="button" class="icon-btn" id="closeCheckoutBtn" aria-label="Close checkout">×</button>
+      </div>
 
-  
-</form></div></div>
+      <div class="checkout-scroll">
+        <div class="order-summary">
+          <div id="orderLines"></div>
+          <div class="summary-total">
+            <span>Total</span>
+            <strong id="checkoutTotal">₹0</strong>
+          </div>
+        </div>
 
-  <div class="overlay hidden" id="closedOverlay" aria-hidden="true"><div class="simple-modal"><div class="modal-emoji">🌙</div><h2>Orders are closed</h2><p>LUQMA is not accepting new orders right now.</p><button class="primary-button" id="closeClosedModal" type="button">Okay</button></div></div>
+        <form id="orderForm" class="order-form">
+          <label class="field">
+            <span>Name</span>
+            <input id="customerName" type="text" maxlength="60" required placeholder="Your name" />
+          </label>
 
-  <footer><div class="container footer-row"><div><strong>LUQMA</strong><span>little bites.</span></div><p>Made with love. ❤️</p></div></footer>
-  <script src="menu.js"></script><script src="script.js"></script>
+          <label class="field">
+            <span>Phone</span>
+            <input id="customerPhone" type="tel" inputmode="numeric" maxlength="15" required placeholder="10-digit mobile number" />
+          </label>
+
+          <label class="field">
+            <span>Address / Flat No.</span>
+            <textarea id="customerAddress" rows="3" maxlength="180" required placeholder="Flat number, wing/building and society"></textarea>
+          </label>
+
+          <fieldset class="payment-box">
+            <legend>Payment Method</legend>
+
+            <div class="payment-choice-grid">
+              <label class="payment-choice">
+                <input type="radio" name="paymentMethod" value="UPI" />
+                <span class="payment-copy">
+                  <strong><span class="payment-icon">₹</span> Pay Online</strong>
+                  <small>UPI / Google Pay / PhonePe / BHIM</small>
+                </span>
+              </label>
+
+              <label class="payment-choice">
+                <input type="radio" name="paymentMethod" value="COD" />
+                <span class="payment-copy">
+                  <strong><span class="payment-icon">₹</span> Cash on Delivery</strong>
+                  <small>Pay when the order is delivered</small>
+                </span>
+              </label>
+            </div>
+          </fieldset>
+
+          <div class="upi-panel hidden" id="upiPanel">
+            <div class="upi-top">
+              <div>
+                <span>Amount to pay</span>
+                <strong id="upiAmount">₹0</strong>
+              </div>
+              <span class="upi-chip">UPI</span>
+            </div>
+
+            <div class="upi-grid">
+              <div class="qr-card">
+                <img id="upiQrImage" src="" alt="UPI payment QR code" />
+                <small>Scan with any UPI app</small>
+              </div>
+
+              <div class="upi-details">
+                <span>UPI ID</span>
+                <strong id="upiIdText">luqma.demo@upi</strong>
+                <small>Payee: <span id="upiPayeeText">LUQMA Little Bites</span></small>
+
+                <a class="upi-pay-btn" id="upiPayBtn" href="#">
+                  Pay <span id="upiPayBtnAmount">₹0</span> via UPI
+                </a>
+              </div>
+            </div>
+
+            <label class="paid-confirm">
+              <input id="paidConfirm" type="checkbox" />
+              <span>I have completed the UPI payment</span>
+            </label>
+
+            <p class="payment-warning">
+              LUQMA will verify the transaction before confirming the order.
+            </p>
+          </div>
+
+          <button class="final-order-btn" id="finalOrderBtn" type="submit" disabled>
+            <span id="finalOrderBtnText">Choose payment method</span>
+            <span aria-hidden="true">→</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="overlay hidden" id="closedOverlay" aria-hidden="true">
+    <div class="small-modal">
+      <div class="closed-icon">♡</div>
+      <h2>Orders are closed</h2>
+      <p>LUQMA is not accepting orders right now. Please check again for the next menu.</p>
+      <button type="button" class="secondary-btn" id="closeClosedModal">Got it</button>
+    </div>
+  </div>
+
+  <script src="menu.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
