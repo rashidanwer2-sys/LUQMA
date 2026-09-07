@@ -1,5 +1,5 @@
 const LUQMA_CONFIG = {
-  shopOpen: true,
+  shopOpen: false,
   menuName: "Sunday Special",
 
   // WhatsApp order number
