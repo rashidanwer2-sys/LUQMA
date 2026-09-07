@@ -9,7 +9,7 @@ const LUQMA_CONFIG = {
   orderWhatsApp: "918386839883",
 
   // Paste your WhatsApp group invite link below later.
-  whatsappGroupLink: "",
+  whatsappGroupLink: "https://chat.whatsapp.com/Ejlv5Ig6wrPHNHMwYOwmPM",
 
   // PAYMENT SETTINGS - placeholders for testing only
   upiId: "luqma.demo@upi",
@@ -18,7 +18,7 @@ const LUQMA_CONFIG = {
   items: [
     {
       id: "CB01",
-      image: "https://images.pexels.com/photos/9609860/pexels-photo-9609860.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop",
+      image: "https://images.pexels.com/photos/4224314/pexels-photo-4224314.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop",
       name: "Chicken Dum Biryani",
       description: "Aromatic dum biryani served with raita and fresh salad.",
       price: 220,
@@ -27,7 +27,7 @@ const LUQMA_CONFIG = {
     },
     {
       id: "MB01",
-      image: "https://images.pexels.com/photos/20446397/pexels-photo-20446397.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop",
+      image: "https://images.pexels.com/photos/16229982/pexels-photo-16229982.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop",
       name: "Mutton Dum Biryani",
       description: "Slow-cooked mutton dum biryani served with raita and salad.",
       price: 280,
@@ -36,7 +36,7 @@ const LUQMA_CONFIG = {
     },
     {
       id: "CK01",
-      image: "https://images.pexels.com/photos/6089832/pexels-photo-6089832.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop",
+      image: "https://images.pexels.com/photos/7474082/pexels-photo-7474082.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop",
       name: "Chicken Kebab",
       description: "Juicy homemade chicken kebabs, freshly prepared in small batches.",
       price: 180,
@@ -50,7 +50,7 @@ const LUQMA_CONFIG = {
       description: "Rich, flavourful homemade mutton kebabs.",
       price: 220,
       quantity: 6,
-      active: false
+      active: true
     },
     {
       id: "MC01",
@@ -59,7 +59,7 @@ const LUQMA_CONFIG = {
       description: "Creamy malai chicken served with soft paratha and salad.",
       price: 240,
       quantity: 8,
-      active: false
+      active: true
     }
 
     // Add more menu items here. Keep active:false when not needed.

@@ -74,8 +74,7 @@ function renderMenu(){
     const qty=state.cart.get(item.id)||0;
     const available=Number(item.quantity||0);
     const sold=available<=0;
-    const low=available>0&&available<=3;
-
+    
     return `<article class="dish-card">
       <div class="dish-visual">
         ${item.image?`<img src="${esc(item.image)}" alt="${esc(item.name)}" loading="lazy">`:`<span>${dishEmoji(item.name)}</span>`}
@@ -87,7 +86,7 @@ function renderMenu(){
         </div>
         <p class="dish-desc">${esc(item.description||"")}</p>
         <div class="dish-bottom">
-          ${sold?`<span class="stock sold">Sold out</span>`:""}
+          
           ${sold
             ?`<span class="sold-badge">SOLD OUT</span>`
             :`<div class="qty-control">

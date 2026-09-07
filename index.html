@@ -27,26 +27,30 @@
         <div class="hero-actions"><a class="primary-link" href="#menuSection">View today's menu</a></div>
         <div class="hero-meta"><div><strong id="menuNameHero">Sunday Special</strong><span>Current menu</span></div><div><strong>Limited plates</strong><span>Prepared in small batches</span></div><div><strong>WhatsApp order</strong><span>No account required</span></div></div>
       </div>
-      <div class="hero-card"><div class="hero-food-art"><div class="plate-ring ring-one"></div><div class="plate-ring ring-two"></div><div class="food-emoji hero-image-wrap"><img src="https://images.pexels.com/photos/9609860/pexels-photo-9609860.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Chicken biryani" /></div><span class="sparkle s1">✦</span><span class="sparkle s2">✧</span><span class="sparkle s3">✦</span></div><div class="hero-card-copy"><span>LUQMA</span><strong>Made with love.</strong><small>Fresh Sunday food for your society.</small></div></div>
-    <a class="whatsapp-outline community-bottom-btn" id="groupLinkBottom" href="#">
-          Click here to join our WhatsApp Community
-        </a>
+      <div class="hero-card"><div class="hero-food-art"><div class="plate-ring ring-one"></div><div class="plate-ring ring-two"></div><div class="food-emoji hero-image-wrap"><img src="https://images.pexels.com/photos/4224314/pexels-photo-4224314.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop" alt="Chicken biryani" /></div><span class="sparkle s1">✦</span><span class="sparkle s2">✧</span><span class="sparkle s3">✦</span></div><div class="hero-card-copy"><span>LUQMA</span><strong>Made with love.</strong><small>Fresh Sunday food for your society.</small></div></div>
+    
       </section>
 
     <section class="menu-section" id="menuSection"><div class="container">
-      <div class="section-heading"><div><p class="eyebrow">What's cooking</p><h2 id="menuTitle">Sunday Special</h2><p id="menuSubtitle">Choose your dishes and quantity below.</p></div><div class="counter-note"><span>🔥</span><p><strong>Limited quantity menu</strong><br>Quantities shown are controlled from <code>menu.js</code>.</p></div></div>
+      <div class="section-heading"><div><p class="eyebrow">What's cooking</p><h2 id="menuTitle">Sunday Special</h2><p id="menuSubtitle">Choose your dishes and quantity below.</p></div></div>
       <div id="closedBanner" class="closed-banner hidden"><div class="closed-icon">🌙</div><div><strong>Orders are closed right now</strong><p>LUQMA is not taking new orders at the moment. Check the WhatsApp group for the next update.</p></div></div>
       <div id="menuGrid" class="menu-grid"></div>
       <div id="noMenu" class="empty-state hidden"><span>🥘</span><h3>No active dishes yet</h3><p>The next Sunday menu will appear here once it is enabled.</p></div>
-    </div><a class="whatsapp-outline community-bottom-btn" id="groupLinkBottom" href="#">
-          Click here to join our WhatsApp Community
-        </a>
+    </div>
       </section>
 
-    <section class="community-section"><div class="container community-card"><div><p class="eyebrow">Stay in the loop</p><h2>Join the LUQMA WhatsApp group</h2><p>Get Sunday menu drops, live counter updates, sold-out alerts and next-week announcements.</p></div></div><a class="whatsapp-outline community-bottom-btn" id="groupLinkBottom" href="#">
-          Click here to join our WhatsApp Community
-        </a>
-      </section>
+    <section class="community-section">
+      <div class="container community-card">
+        <div class="community-copy">
+          <p class="eyebrow">Stay in the loop</p>
+          <h2>Join the LUQMA WhatsApp group</h2>
+          <p>Get Sunday menu drops, availability updates and next-week announcements.</p>
+          <a class="whatsapp-outline community-bottom-btn" id="groupLinkBottom" href="#">
+            Click here to join our WhatsApp Community
+          </a>
+        </div>
+      </div>
+    </section>
   </main>
 
   <div class="cart-bar" id="cartBar"><button class="cart-bar-inner container" id="openCartBtn" type="button"><div><strong id="cartCount">0 items</strong><span>Tap to review your order</span></div><strong id="cartTotal">₹0</strong></button></div>
@@ -73,16 +77,16 @@
     <div class="payment-choice-grid">
       <label class="payment-choice">
         <input type="radio" name="paymentMethod" value="UPI" />
-        <span>
-          <strong>💳 Pay Online</strong>
+        <span class="payment-copy">
+          <strong><span class="payment-icon">₹</span> Pay Online</strong>
           <small>UPI / Google Pay / PhonePe / BHIM</small>
         </span>
       </label>
 
       <label class="payment-choice">
         <input type="radio" name="paymentMethod" value="COD" />
-        <span>
-          <strong>💵 Cash on Delivery</strong>
+        <span class="payment-copy">
+          <strong><span class="payment-icon">₹</span> Cash on Delivery</strong>
           <small>Pay when the order is delivered</small>
         </span>
       </label>
@@ -121,7 +125,6 @@
     </label>
 
     <p class="payment-warning">
-      Payment is not automatically verified in this GitHub-only version.
       LUQMA will verify the transaction before confirming the order.
     </p>
   </div>
