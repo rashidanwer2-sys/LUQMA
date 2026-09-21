@@ -1,5 +1,5 @@
 const LUQMA_CONFIG = {
-  shopOpen: false,
+  shopOpen: true,
   menuName: "Sunday Special",
 
   // WhatsApp order number
@@ -34,20 +34,20 @@ const LUQMA_CONFIG = {
     },
     {
       id: "CK01",
-      name: "Chicken Kebab",
+      name: "Reshami Chicken Kebab",
       description: "Juicy homemade chicken kebabs, freshly prepared in small batches.",
       price: 180,
       quantity: 8,
-      active: false,
+      active: true,
       image: "https://images.pexels.com/photos/6089832/pexels-photo-6089832.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop"
     },
     {
       id: "MK01",
-      name: "Mutton Kebab",
-      description: "Tender spiced mutton kebabs with a smoky finish.",
+      name: "Chicken Seekh Kebab",
+      description: "Tender spiced chicken kebabs with a smoky finish.",
       price: 220,
       quantity: 6,
-      active: false,
+      active: true,
       image: "https://images.pexels.com/photos/15058960/pexels-photo-15058960.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop"
     },
     {
