@@ -1513,105 +1513,132 @@ a {
 
 
 /* =========================================================
-   MOBILE DISH CARD FIX
-   Keeps image from covering dish information
+   FINAL MOBILE DISH IMAGE FIX
+   Full original image — absolutely NO cropping
    ========================================================= */
 
-/* =========================================
-   MOBILE MENU — SAME IMAGE STYLE AS DESKTOP
-   ========================================= */
+@media screen and (max-width: 480px) {
 
-@media (max-width: 480px) {
+  .menu-grid .dish-card {
+    display: flex !important;
+    flex-direction: column !important;
 
-  .dish-card {
-    display: grid;
-    grid-template-columns: 145px minmax(0, 1fr);
-    gap: 14px;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
 
-    padding: 14px;
-    min-height: 190px;
+    padding: 0 !important;
+    gap: 0 !important;
 
-    overflow: hidden;
+    overflow: hidden !important;
   }
 
-  .dish-visual {
-    width: 145px;
-    min-width: 145px;
 
-    height: 170px;
-    min-height: 170px;
+  /* IMAGE CONTAINER */
 
-    border-radius: 18px;
-    overflow: hidden;
+  .menu-grid .dish-card .dish-visual {
+    display: block !important;
+
+    width: 100% !important;
+    max-width: none !important;
+
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+
+    flex: none !important;
+
+    aspect-ratio: auto !important;
+
+    overflow: visible !important;
+
+    border-radius: 20px 20px 0 0 !important;
+
+    background: #fffdf9 !important;
   }
 
-  .dish-visual img {
-    display: block;
 
-    width: 100%;
-    height: 100%;
+  /* ACTUAL IMAGE */
 
-    min-height: 0;
+  .menu-grid .dish-card .dish-visual img {
+    display: block !important;
 
-    object-fit: cover;
-    object-position: center;
+    width: 100% !important;
+    max-width: 100% !important;
+
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+
+    aspect-ratio: auto !important;
+
+    object-fit: contain !important;
+    object-position: center !important;
+
+    border-radius: 20px 20px 0 0 !important;
   }
 
-  .dish-body {
-    display: flex;
-    flex-direction: column;
 
-    width: 100%;
-    min-width: 0;
+  /* DETAILS BELOW IMAGE */
 
-    padding: 3px 0;
-    overflow: visible;
+  .menu-grid .dish-card .dish-body {
+    display: flex !important;
+    flex-direction: column !important;
+
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+
+    padding: 16px !important;
+
+    overflow: visible !important;
+
+    background: #fffdf9 !important;
   }
 
-  .dish-top {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 8px;
+
+  .menu-grid .dish-card .dish-top {
+    display: flex !important;
+    align-items: flex-start !important;
+    justify-content: space-between !important;
+
+    gap: 12px !important;
   }
 
-  .dish-title {
-    margin: 0;
 
-    font-size: 18px;
-    line-height: 1.2;
+  .menu-grid .dish-card .dish-title {
+    margin: 0 !important;
+
+    font-size: 21px !important;
+    line-height: 1.25 !important;
   }
 
-  .price {
-    flex-shrink: 0;
-    font-size: 16px;
+
+  .menu-grid .dish-card .price {
+    flex-shrink: 0 !important;
+
+    font-size: 17px !important;
   }
 
-  .dish-desc {
-    margin: 7px 0 12px;
 
-    font-size: 12px;
-    line-height: 1.4;
+  .menu-grid .dish-card .dish-desc {
+    display: block !important;
+
+    margin: 8px 0 16px !important;
+
+    font-size: 13px !important;
+    line-height: 1.5 !important;
   }
 
-  .dish-bottom {
-    margin-top: auto;
 
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-  }
+  .menu-grid .dish-card .dish-bottom {
+    display: flex !important;
 
-  .qty-control {
-    display: grid;
+    width: 100% !important;
 
-    grid-template-columns: 34px 34px 34px;
-    min-height: 40px;
-  }
+    margin-top: 0 !important;
 
-  .qty-control button {
-    width: 34px;
-    height: 38px;
-    font-size: 20px;
+    align-items: center !important;
+    justify-content: flex-end !important;
   }
 }
