@@ -30,7 +30,7 @@ const LUQMA_CONFIG = {
       price: 180,
       quantity: 8,
       active: true,
-      image: "https://images.pexels.com/photos/6089832/pexels-photo-6089832.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop"
+      image: "assets/images/PCK.jpg"
     },
     {
       id: "CSK01",
@@ -39,7 +39,7 @@ const LUQMA_CONFIG = {
       price: 220,
       quantity: 6,
       active: true,
-      image: "https://images.pexels.com/photos/15058960/pexels-photo-15058960.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop"
+      image: "assets/images/CSK.jpg"
     },
     {
       id: "MDB01",
