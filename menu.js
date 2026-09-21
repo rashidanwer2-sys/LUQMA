@@ -5,11 +5,10 @@ const LUQMA_CONFIG = {
   // WhatsApp order number
   orderWhatsApp: "917620306562",
 
-  // Paste your actual WhatsApp Community/Group invite URL here
+  // WhatsApp Community/Group
   whatsappGroupLink: "https://chat.whatsapp.com/Ejlv5Ig6wrPHNHMwYOwmPM",
 
-  // Placeholder UPI details for testing
-  // Replace these before accepting real payments.
+  // UPI details
   upiId: "afreenjakati8-1@oksbi",
   upiPayeeName: "Afreen Jakati",
 
@@ -17,7 +16,7 @@ const LUQMA_CONFIG = {
     {
       id: "CDB01",
       name: "Chicken Dum Biryani",
-      description: "Aromatic dum biryani served with raita and fresh salad",
+      description: "Fragrant basmati rice layered with tender, spice-marinated chicken and slow-cooked on dum. Served with cooling raita & fresh salad.",
       price: 220,
       quantity: 15,
       active: true,
@@ -26,7 +25,7 @@ const LUQMA_CONFIG = {
     {
       id: "PCK01",
       name: "Peshawari Chicken Kebab",
-      description: "Juicy homemade chicken kebabs, freshly prepared in small batches.",
+      description: "Succulent chicken marinated with bold Peshawari spices and cooked until juicy, tender and beautifully charred.",
       price: 180,
       quantity: 8,
       active: true,
@@ -35,7 +34,7 @@ const LUQMA_CONFIG = {
     {
       id: "CSK01",
       name: "Chicken Seekh Kebab",
-      description: "Tender spiced chicken kebabs with a smoky finish.",
+      description: "Minced chicken seasoned with aromatic herbs and spices, shaped on skewers and cooked for a juicy bite with a smoky finish.",
       price: 220,
       quantity: 6,
       active: true,
@@ -44,7 +43,7 @@ const LUQMA_CONFIG = {
     {
       id: "MDB01",
       name: "Mutton Dum Biryani",
-      description: "Slow-cooked mutton dum biryani served with raita and salad.",
+      description: "Succulent mutton layered with fragrant basmati rice and aromatic spices, then slow-cooked on dum. Served with raita & fresh salad.",
       price: 280,
       quantity: 10,
       active: false,
@@ -53,7 +52,7 @@ const LUQMA_CONFIG = {
     {
       id: "PMK01",
       name: "Peshawari Mutton Kebab",
-      description: "Juicy homemade mutton kebabs, freshly prepared in small batches.",
+      description: "Rich, juicy mutton infused with robust Peshawari spices and cooked until tender with a deliciously smoky finish.",
       price: 180,
       quantity: 8,
       active: false,
@@ -62,7 +61,7 @@ const LUQMA_CONFIG = {
     {
       id: "MSK01",
       name: "Mutton Seekh Kebab",
-      description: "Tender spiced mutton kebabs with a smoky finish.",
+      description: "Juicy minced mutton blended with aromatic herbs and spices, skewered and cooked until tender with a smoky, flavour-packed finish.",
       price: 220,
       quantity: 6,
       active: false,
@@ -71,7 +70,7 @@ const LUQMA_CONFIG = {
     {
       id: "MCP01",
       name: "Malai Chicken + Paratha",
-      description: "Creamy malai chicken served with soft paratha and salad.",
+      description: "Tender chicken in a creamy, mildly spiced malai marinade, served with warm, soft paratha & fresh salad.",
       price: 240,
       quantity: 8,
       active: false,
