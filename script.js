@@ -257,7 +257,7 @@ function updatePaymentUI() {
     $("upiPayBtn").href = upiUri;
 
     $("upiQrImage").src =
-      "https://api.qrserver.com/v1/create-qr-code/?size=260x260&margin=8&data=" +
+      "assets/images/QrCode.jpg" +
       encodeURIComponent(upiUri);
   }
 

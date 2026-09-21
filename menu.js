@@ -3,15 +3,15 @@ const LUQMA_CONFIG = {
   menuName: "Sunday Special",
 
   // WhatsApp order number
-  orderWhatsApp: "918386839883",
+  orderWhatsApp: "917620306562",
 
   // Paste your actual WhatsApp Community/Group invite URL here
   whatsappGroupLink: "https://chat.whatsapp.com/Ejlv5Ig6wrPHNHMwYOwmPM",
 
   // Placeholder UPI details for testing
   // Replace these before accepting real payments.
-  upiId: "luqma.demo@upi",
-  upiPayeeName: "LUQMA Little Bites",
+  upiId: "afreenjakati8-1@oksbi",
+  upiPayeeName: "Afreen Jakati",
 
   items: [
     {
