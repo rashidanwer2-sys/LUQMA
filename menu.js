@@ -24,8 +24,8 @@ const LUQMA_CONFIG = {
       image: "assets/images/BiryaniMenu.jpg"
     },
     {
-      id: "RCK01",
-      name: "Reshami Chicken Kebab",
+      id: "PCK01",
+      name: "Peshawari Chicken Kebab",
       description: "Juicy homemade chicken kebabs, freshly prepared in small batches.",
       price: 180,
       quantity: 8,
@@ -51,8 +51,8 @@ const LUQMA_CONFIG = {
       image: "https://images.pexels.com/photos/16020573/pexels-photo-16020573.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop"
     },
     {
-      id: "RMK01",
-      name: "Reshami Mutton Kebab",
+      id: "PMK01",
+      name: "Peshawari Mutton Kebab",
       description: "Juicy homemade mutton kebabs, freshly prepared in small batches.",
       price: 180,
       quantity: 8,
