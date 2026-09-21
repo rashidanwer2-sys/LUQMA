@@ -172,12 +172,12 @@
           </label>
 
           <!-- PAYMENT METHOD -->
+<!-- PAYMENT METHOD -->
 <fieldset class="payment-box">
   <legend>Payment Method</legend>
 
   <div class="payment-choice-grid">
 
-    <!-- PAY ONLINE -->
     <label class="payment-choice">
       <input
         type="radio"
@@ -198,7 +198,6 @@
     </label>
 
 
-    <!-- CASH ON DELIVERY -->
     <label class="payment-choice">
       <input
         type="radio"
@@ -225,25 +224,19 @@
 <!-- ONLINE PAYMENT PANEL -->
 <div class="upi-panel hidden" id="upiPanel">
 
-  <!-- AMOUNT -->
   <div class="upi-top">
 
     <div>
       <span>Amount to pay</span>
-
-      <strong id="upiAmount">
-        ₹0
-      </strong>
+      <strong id="upiAmount">₹0</strong>
     </div>
 
-    <span class="upi-chip">
-      UPI
-    </span>
+    <span class="upi-chip">UPI</span>
 
   </div>
 
 
-  <!-- SELECT UPI APP -->
+  <!-- UPI APP SELECTION -->
   <div class="upi-app-section">
 
     <span class="upi-app-title">
@@ -252,8 +245,6 @@
 
     <div class="upi-app-options">
 
-
-      <!-- GOOGLE PAY -->
       <label class="upi-app-choice">
 
         <input
@@ -264,21 +255,15 @@
         />
 
         <span class="upi-app-copy">
-
-          <strong>
-            Google Pay
-          </strong>
-
+          <strong>Google Pay</strong>
           <small>
             Open payment directly in Google Pay
           </small>
-
         </span>
 
       </label>
 
 
-      <!-- OTHER UPI -->
       <label class="upi-app-choice">
 
         <input
@@ -288,15 +273,10 @@
         />
 
         <span class="upi-app-copy">
-
-          <strong>
-            Other UPI App
-          </strong>
-
+          <strong>Other UPI App</strong>
           <small>
             PhonePe, BHIM, Paytm or another UPI app
           </small>
-
         </span>
 
       </label>
@@ -306,23 +286,22 @@
   </div>
 
 
-  <!-- PAY BUTTON -->
+  <!-- UPI PAYMENT BUTTON -->
   <a
     class="upi-pay-btn"
     id="upiPayBtn"
     href="#"
   >
-    Open Google Pay • ₹0
+    Open Google Pay
   </a>
 
 
-  <!-- DIVIDER -->
   <div class="upi-divider">
     <span>OR SCAN QR</span>
   </div>
 
 
-  <!-- QR + DETAILS -->
+  <!-- QR -->
   <div class="upi-grid">
 
     <div class="qr-card">
@@ -339,12 +318,10 @@
 
     </div>
 
-    <!-- 
+
     <div class="upi-details">
 
-      <span>
-        UPI ID
-      </span>
+      <span>UPI ID</span>
 
       <strong id="upiIdText">
         afreenjakati8-1@oksbi
@@ -359,7 +336,7 @@
 
     </div>
 
-  </div> -->
+  </div>
 
 
   <!-- PAYMENT CONFIRMATION -->
@@ -383,10 +360,23 @@
 
 </div>
 
-          <button class="final-order-btn" id="finalOrderBtn" type="submit" disabled>
-            <span id="finalOrderBtnText">Choose payment method</span>
-            <span aria-hidden="true">→</span>
-          </button>
+
+<!--
+IMPORTANT:
+THIS BUTTON MUST REMAIN OUTSIDE #upiPanel
+-->
+<button
+  class="final-order-btn"
+  id="finalOrderBtn"
+  type="submit"
+  disabled
+>
+  <span id="finalOrderBtnText">
+    Choose payment method
+  </span>
+
+  <span aria-hidden="true">→</span>
+</button>
         </form>
       </div>
     </div>
