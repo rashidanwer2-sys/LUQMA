@@ -712,50 +712,88 @@ function toggleOverlay(
    PAYMENT UI
    ========================================================= */
 
+/* =========================================================
+   PAYMENT UI - FINAL FIX
+   ========================================================= */
+
 function updatePaymentUI() {
 
-  const upiPanel =
-    $("upiPanel");
+  const upiPanel = $("upiPanel");
+  const finalButton = $("finalOrderBtn");
+  const finalText = $("finalOrderBtnText");
+  const paidConfirm = $("paidConfirm");
 
-  const finalButton =
-    $("finalOrderBtn");
+  if (!upiPanel || !finalButton || !finalText) {
+    return;
+  }
 
-  const finalText =
-    $("finalOrderBtnText");
+  const total = cartTotal();
+  const method = state.paymentMethod;
+
+  /* =====================================================
+     ALWAYS KEEP FINAL BUTTON VISIBLE
+     ===================================================== */
+
+  finalButton.style.display = "flex";
+  finalButton.style.visibility = "visible";
 
 
-  if (
-    !upiPanel ||
-    !finalButton ||
-    !finalText
-  ) {
+  /* =====================================================
+     NO PAYMENT METHOD SELECTED
+     ===================================================== */
+
+  if (!method) {
+
+    upiPanel.classList.add("hidden");
+
+    finalButton.disabled = true;
+
+    finalText.textContent =
+      "Choose payment method";
 
     return;
   }
 
 
-  const total =
-    cartTotal();
-
-  const method =
-    state.paymentMethod;
-
-
   /* =====================================================
-     SHOW / HIDE UPI PANEL
+     CASH ON DELIVERY
      ===================================================== */
 
-  upiPanel.classList.toggle(
-    "hidden",
-    method !== "UPI"
-  );
+  if (method === "COD") {
+
+    // Hide online payment section
+    upiPanel.classList.add("hidden");
+
+    // Online payment confirmation is irrelevant for COD
+    state.paymentMarkedPaid = false;
+
+    if (paidConfirm) {
+      paidConfirm.checked = false;
+    }
+
+    // Enable COD button
+    finalButton.disabled = false;
+
+    finalText.textContent =
+      "Place COD Order";
+
+    return;
+  }
 
 
   /* =====================================================
-     ONLINE PAYMENT
+     ONLINE / UPI PAYMENT
      ===================================================== */
 
   if (method === "UPI") {
+
+    // Show online payment panel
+    upiPanel.classList.remove("hidden");
+
+
+    /* -----------------------------------------
+       ORDER CODE
+       ----------------------------------------- */
 
     if (!state.orderCode) {
 
@@ -765,115 +803,117 @@ function updatePaymentUI() {
     }
 
 
-    $("upiAmount").textContent =
-      money(total);
+    /* -----------------------------------------
+       PAYMENT DETAILS
+       ----------------------------------------- */
+
+    if ($("upiAmount")) {
+
+      $("upiAmount").textContent =
+        money(total);
+
+    }
 
 
-    $("upiIdText").textContent =
-      LUQMA_CONFIG.upiId;
+    if ($("upiIdText")) {
+
+      $("upiIdText").textContent =
+        LUQMA_CONFIG.upiId;
+
+    }
 
 
-    $("upiPayeeText").textContent =
-      LUQMA_CONFIG.upiPayeeName;
+    if ($("upiPayeeText")) {
+
+      $("upiPayeeText").textContent =
+        LUQMA_CONFIG.upiPayeeName;
+
+    }
 
 
-    /* Static LUQMA QR */
+    /* -----------------------------------------
+       QR CODE
+       ----------------------------------------- */
 
-    $("upiQrImage").src =
-      "assets/images/QrCode.jpg";
+    if ($("upiQrImage")) {
 
+      $("upiQrImage").src =
+        "assets/images/QrCode.jpg";
+
+    }
+
+
+    /* -----------------------------------------
+       GOOGLE PAY / OTHER UPI
+       ----------------------------------------- */
 
     const upiPayBtn =
       $("upiPayBtn");
 
 
-    /* GOOGLE PAY */
+    if (upiPayBtn) {
 
-    if (
-      state.upiApp === "GPAY"
-    ) {
+      if (state.upiApp === "GPAY") {
 
-      upiPayBtn.href =
-        buildGooglePayUri(
-          total,
-          state.orderCode
-        );
+        upiPayBtn.href =
+          buildGooglePayUri(
+            total,
+            state.orderCode
+          );
 
+        upiPayBtn.textContent =
+          `Open Google Pay • ${money(total)}`;
 
-      upiPayBtn.textContent =
-        `Open Google Pay • ${money(total)}`;
+      } else {
 
-    }
+        upiPayBtn.href =
+          buildUpiUri(
+            total,
+            state.orderCode
+          );
 
-    /* OTHER UPI APP */
+        upiPayBtn.textContent =
+          `Pay ${money(total)} via UPI`;
 
-    else {
-
-      upiPayBtn.href =
-        buildUpiUri(
-          total,
-          state.orderCode
-        );
-
-
-      upiPayBtn.textContent =
-        `Pay ${money(total)} via UPI`;
+      }
 
     }
-  }
 
 
-  /* =====================================================
-     NO PAYMENT METHOD
-     ===================================================== */
+    /* -----------------------------------------
+       FINAL PAID ORDER BUTTON
+       ----------------------------------------- */
 
-  if (!method) {
+    if (state.paymentMarkedPaid) {
 
-    finalButton.disabled =
-      true;
+      finalButton.disabled = false;
 
+      finalText.textContent =
+        "Place Paid Order";
 
-    finalText.textContent =
-      "Choose payment method";
+    } else {
 
+      finalButton.disabled = true;
+
+      finalText.textContent =
+        "Complete payment first";
+
+    }
 
     return;
   }
 
 
   /* =====================================================
-     COD
+     SAFETY FALLBACK
      ===================================================== */
 
-  if (method === "COD") {
+  upiPanel.classList.add("hidden");
 
-    finalButton.disabled =
-      false;
+  finalButton.disabled = true;
 
-
-    finalText.textContent =
-      "Place COD Order";
-
-
-    return;
-  }
-
-
-  /* =====================================================
-     UPI
-     ===================================================== */
-
-  if (method === "UPI") {
-
-    finalButton.disabled =
-      !state.paymentMarkedPaid;
-
-
-    finalText.textContent =
-      state.paymentMarkedPaid
-        ? "Place Paid Order"
-        : "Complete payment first";
-  }
+  finalText.textContent =
+    "Choose payment method";
 }
 
 

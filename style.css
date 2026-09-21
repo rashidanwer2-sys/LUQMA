@@ -2093,3 +2093,26 @@ a {
     font-size: 15px;
   }
 }
+
+/* =========================================================
+   LUQMA - FINAL CHECKOUT BUTTON FIX
+   ========================================================= */
+
+.final-order-btn {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  min-height: 58px;
+
+  visibility: visible !important;
+}
+
+.final-order-btn:disabled {
+  display: flex !important;
+  visibility: visible !important;
+
+  opacity: 0.55;
+  cursor: not-allowed;
+}
