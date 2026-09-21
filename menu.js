@@ -21,7 +21,7 @@ const LUQMA_CONFIG = {
       price: 220,
       quantity: 15,
       active: true,
-      image: "assets/images/BiryaniMenu.jpg?auto=compress&cs=tinysrgb&w=1200&fit=crop"
+      image: "assets/images/BiryaniMenu.jpg"
     },
     {
       id: "MB01",
