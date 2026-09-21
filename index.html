@@ -171,63 +171,217 @@
             <textarea id="customerAddress" rows="3" maxlength="180" required placeholder="Flat number, wing/building and society"></textarea>
           </label>
 
-          <fieldset class="payment-box">
-            <legend>Payment Method</legend>
+          <!-- PAYMENT METHOD -->
+<fieldset class="payment-box">
+  <legend>Payment Method</legend>
 
-            <div class="payment-choice-grid">
-              <label class="payment-choice">
-                <input type="radio" name="paymentMethod" value="UPI" />
-                <span class="payment-copy">
-                  <strong><span class="payment-icon">₹</span> Pay Online</strong>
-                  <small>UPI / Google Pay / PhonePe / BHIM</small>
-                </span>
-              </label>
+  <div class="payment-choice-grid">
 
-              <label class="payment-choice">
-                <input type="radio" name="paymentMethod" value="COD" />
-                <span class="payment-copy">
-                  <strong><span class="payment-icon">₹</span> Cash on Delivery</strong>
-                  <small>Pay when the order is delivered</small>
-                </span>
-              </label>
-            </div>
-          </fieldset>
+    <!-- PAY ONLINE -->
+    <label class="payment-choice">
+      <input
+        type="radio"
+        name="paymentMethod"
+        value="UPI"
+      />
 
-          <div class="upi-panel hidden" id="upiPanel">
-            <div class="upi-top">
-              <div>
-                <span>Amount to pay</span>
-                <strong id="upiAmount">₹0</strong>
-              </div>
-              <span class="upi-chip">UPI</span>
-            </div>
+      <span class="payment-copy">
+        <strong>
+          <span class="payment-icon">₹</span>
+          Pay Online
+        </strong>
 
-            <div class="upi-grid">
-              <div class="qr-card">
-                <img id="upiQrImage" src="" alt="UPI payment QR code" />
-                <small>Scan with any UPI app</small>
-              </div>
+        <small>
+          Google Pay or any other UPI app
+        </small>
+      </span>
+    </label>
 
-              <div class="upi-details">
-                <span>UPI ID</span>
-                <strong id="upiIdText">luqma.demo@upi</strong>
-                <small>Payee: <span id="upiPayeeText">LUQMA Little Bites</span></small>
 
-                <a class="upi-pay-btn" id="upiPayBtn" href="#">
-                  Pay <span id="upiPayBtnAmount">₹0</span> via UPI
-                </a>
-              </div>
-            </div>
+    <!-- CASH ON DELIVERY -->
+    <label class="payment-choice">
+      <input
+        type="radio"
+        name="paymentMethod"
+        value="COD"
+      />
 
-            <label class="paid-confirm">
-              <input id="paidConfirm" type="checkbox" />
-              <span>I have completed the UPI payment</span>
-            </label>
+      <span class="payment-copy">
+        <strong>
+          <span class="payment-icon">₹</span>
+          Cash on Delivery
+        </strong>
 
-            <p class="payment-warning">
-              LUQMA will verify the transaction before confirming the order.
-            </p>
-          </div>
+        <small>
+          Pay when the order is delivered
+        </small>
+      </span>
+    </label>
+
+  </div>
+</fieldset>
+
+
+<!-- ONLINE PAYMENT PANEL -->
+<div class="upi-panel hidden" id="upiPanel">
+
+  <!-- AMOUNT -->
+  <div class="upi-top">
+
+    <div>
+      <span>Amount to pay</span>
+
+      <strong id="upiAmount">
+        ₹0
+      </strong>
+    </div>
+
+    <span class="upi-chip">
+      UPI
+    </span>
+
+  </div>
+
+
+  <!-- SELECT UPI APP -->
+  <div class="upi-app-section">
+
+    <span class="upi-app-title">
+      Choose UPI App
+    </span>
+
+    <div class="upi-app-options">
+
+
+      <!-- GOOGLE PAY -->
+      <label class="upi-app-choice">
+
+        <input
+          type="radio"
+          name="upiApp"
+          value="GPAY"
+          checked
+        />
+
+        <span class="upi-app-copy">
+
+          <strong>
+            Google Pay
+          </strong>
+
+          <small>
+            Open payment directly in Google Pay
+          </small>
+
+        </span>
+
+      </label>
+
+
+      <!-- OTHER UPI -->
+      <label class="upi-app-choice">
+
+        <input
+          type="radio"
+          name="upiApp"
+          value="OTHER"
+        />
+
+        <span class="upi-app-copy">
+
+          <strong>
+            Other UPI App
+          </strong>
+
+          <small>
+            PhonePe, BHIM, Paytm or another UPI app
+          </small>
+
+        </span>
+
+      </label>
+
+    </div>
+
+  </div>
+
+
+  <!-- PAY BUTTON -->
+  <a
+    class="upi-pay-btn"
+    id="upiPayBtn"
+    href="#"
+  >
+    Open Google Pay • ₹0
+  </a>
+
+
+  <!-- DIVIDER -->
+  <div class="upi-divider">
+    <span>OR SCAN QR</span>
+  </div>
+
+
+  <!-- QR + DETAILS -->
+  <div class="upi-grid">
+
+    <div class="qr-card">
+
+      <img
+        id="upiQrImage"
+        src="assets/images/QrCode.jpg"
+        alt="LUQMA UPI payment QR code"
+      />
+
+      <small>
+        Scan with any UPI app
+      </small>
+
+    </div>
+
+
+    <div class="upi-details">
+
+      <span>
+        UPI ID
+      </span>
+
+      <strong id="upiIdText">
+        afreenjakati8-1@oksbi
+      </strong>
+
+      <small>
+        Payee:
+        <span id="upiPayeeText">
+          Afreen Jakati
+        </span>
+      </small>
+
+    </div>
+
+  </div>
+
+
+  <!-- PAYMENT CONFIRMATION -->
+  <label class="paid-confirm">
+
+    <input
+      id="paidConfirm"
+      type="checkbox"
+    />
+
+    <span>
+      I have completed the UPI payment
+    </span>
+
+  </label>
+
+
+  <p class="payment-warning">
+    LUQMA will verify the transaction before confirming the order.
+  </p>
+
+</div>
 
           <button class="final-order-btn" id="finalOrderBtn" type="submit" disabled>
             <span id="finalOrderBtnText">Choose payment method</span>
