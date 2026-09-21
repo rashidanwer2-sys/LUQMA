@@ -1,11 +1,21 @@
+/* =========================================================
+   LUQMA - SCRIPT.JS
+   ========================================================= */
+
 const state = {
   cart: new Map(),
   paymentMethod: "",
+  upiApp: "GPAY",
   paymentMarkedPaid: false,
   orderCode: ""
 };
 
 const $ = (id) => document.getElementById(id);
+
+
+/* =========================================================
+   START
+   ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
   setupPage();
@@ -20,37 +30,65 @@ document.addEventListener("DOMContentLoaded", () => {
    ========================================================= */
 
 function setupPage() {
+
   const c = LUQMA_CONFIG;
 
   $("menuTitle").textContent = c.menuName;
   $("menuNameHero").textContent = c.menuName;
-  $("statusText").textContent = c.shopOpen
-    ? "Orders Open"
-    : "Orders Closed";
 
-  $("statusPill").classList.toggle("closed", !c.shopOpen);
-  $("closedBanner").classList.toggle("hidden", c.shopOpen);
+  $("statusText").textContent =
+    c.shopOpen
+      ? "Orders Open"
+      : "Orders Closed";
 
-  const groupLink = $("groupLinkBottom");
+  $("statusPill").classList.toggle(
+    "closed",
+    !c.shopOpen
+  );
+
+  $("closedBanner").classList.toggle(
+    "hidden",
+    c.shopOpen
+  );
+
+
+  /* WhatsApp Community */
+
+  const groupLink =
+    $("groupLinkBottom");
 
   if (groupLink) {
+
     if (
       c.whatsappGroupLink &&
       c.whatsappGroupLink.trim()
     ) {
-      groupLink.href = c.whatsappGroupLink.trim();
-      groupLink.target = "_blank";
-      groupLink.rel = "noopener";
+
+      groupLink.href =
+        c.whatsappGroupLink.trim();
+
+      groupLink.target =
+        "_blank";
+
+      groupLink.rel =
+        "noopener";
+
     } else {
+
       groupLink.href = "#";
 
-      groupLink.addEventListener("click", (event) => {
-        event.preventDefault();
+      groupLink.addEventListener(
+        "click",
+        (event) => {
 
-        alert(
-          "WhatsApp Community link is not added yet. Paste it in menu.js."
-        );
-      });
+          event.preventDefault();
+
+          alert(
+            "WhatsApp Community link is not added yet. Paste it in menu.js."
+          );
+
+        }
+      );
     }
   }
 }
@@ -67,22 +105,30 @@ function bindEvents() {
     openCheckout
   );
 
+
   $("closeCheckoutBtn").addEventListener(
     "click",
     closeCheckout
   );
 
+
   $("checkoutOverlay").addEventListener(
     "click",
     (event) => {
-      if (event.target === $("checkoutOverlay")) {
+
+      if (
+        event.target ===
+        $("checkoutOverlay")
+      ) {
+
         closeCheckout();
+
       }
     }
   );
 
 
-  /* FINAL ORDER SUBMISSION */
+  /* FINAL ORDER */
 
   $("orderForm").addEventListener(
     "submit",
@@ -90,30 +136,66 @@ function bindEvents() {
   );
 
 
-  /* PAYMENT METHOD */
+  /* =====================================================
+     PAYMENT METHOD
+     ===================================================== */
 
   document
-    .querySelectorAll('input[name="paymentMethod"]')
+    .querySelectorAll(
+      'input[name="paymentMethod"]'
+    )
     .forEach((input) => {
 
       input.addEventListener(
         "change",
         (event) => {
 
-          state.paymentMethod = event.target.value;
+          state.paymentMethod =
+            event.target.value;
 
-          state.paymentMarkedPaid = false;
+          state.paymentMarkedPaid =
+            false;
 
-          $("paidConfirm").checked = false;
+          const paidConfirm =
+            $("paidConfirm");
+
+          if (paidConfirm) {
+            paidConfirm.checked = false;
+          }
 
           updatePaymentUI();
         }
       );
-
     });
 
 
-  /* UPI PAYMENT CONFIRMATION */
+  /* =====================================================
+     UPI APP
+     ===================================================== */
+
+  document
+    .querySelectorAll(
+      'input[name="upiApp"]'
+    )
+    .forEach((input) => {
+
+      input.addEventListener(
+        "change",
+        (event) => {
+
+          state.upiApp =
+            event.target.value;
+
+          updatePaymentUI();
+
+        }
+      );
+    });
+
+
+  /* =====================================================
+     PAYMENT CONFIRMATION
+     ===================================================== */
 
   $("paidConfirm").addEventListener(
     "change",
@@ -123,6 +205,7 @@ function bindEvents() {
         $("paidConfirm").checked;
 
       updatePaymentUI();
+
     }
   );
 
@@ -132,26 +215,31 @@ function bindEvents() {
   $("closeClosedModal").addEventListener(
     "click",
     () => {
+
       toggleOverlay(
         "closedOverlay",
         false
       );
+
     }
   );
+
 
   $("closedOverlay").addEventListener(
     "click",
     (event) => {
 
       if (
-        event.target === $("closedOverlay")
+        event.target ===
+        $("closedOverlay")
       ) {
+
         toggleOverlay(
           "closedOverlay",
           false
         );
-      }
 
+      }
     }
   );
 }
@@ -175,152 +263,151 @@ function activeItems() {
 
 function renderMenu() {
 
-  const items = activeItems();
+  const items =
+    activeItems();
 
   $("noMenu").classList.toggle(
     "hidden",
     items.length > 0
   );
 
-  $("menuGrid").innerHTML = items
-    .map((item) => {
 
-      const selectedQty =
-        state.cart.get(item.id) || 0;
+  $("menuGrid").innerHTML =
+    items
+      .map((item) => {
 
-      const availableQty =
-        Math.max(
-          0,
-          Number(item.quantity || 0)
-        );
+        const selectedQty =
+          state.cart.get(item.id) || 0;
 
-      const soldOut =
-        availableQty <= 0;
+        const availableQty =
+          Math.max(
+            0,
+            Number(item.quantity || 0)
+          );
 
-      return `
-        <article class="dish-card">
-
-          <div class="dish-visual">
-
-            <img
-              src="${escapeHtml(item.image)}"
-              alt="${escapeHtml(item.name)}"
-              loading="lazy"
-
-              onerror="
-                this.src='https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop'
-              "
-            />
-
-          </div>
+        const soldOut =
+          availableQty <= 0;
 
 
-          <div class="dish-body">
+        return `
 
-            <div class="dish-top">
+          <article class="dish-card">
 
-              <h3 class="dish-title">
-                ${escapeHtml(item.name)}
-              </h3>
+            <div class="dish-visual">
 
-              <span class="price">
-                ${money(item.price)}
-              </span>
+              <img
+                src="${escapeHtml(item.image)}"
+                alt="${escapeHtml(item.name)}"
+                loading="lazy"
+
+                onerror="
+                  this.src='https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1200&fit=crop'
+                "
+              />
 
             </div>
 
 
-            <p class="dish-desc">
-              ${escapeHtml(
-                item.description || ""
-              )}
-            </p>
+            <div class="dish-body">
+
+              <div class="dish-top">
+
+                <h3 class="dish-title">
+                  ${escapeHtml(item.name)}
+                </h3>
+
+                <span class="price">
+                  ${money(item.price)}
+                </span>
+
+              </div>
 
 
-            <div class="dish-bottom">
-
-              ${
-                soldOut
-                  ? `
-                    <span class="sold-badge">
-                      SOLD OUT
-                    </span>
-                  `
-                  : ""
-              }
+              <p class="dish-desc">
+                ${escapeHtml(
+                  item.description || ""
+                )}
+              </p>
 
 
-              ${
-                soldOut
-                  ? ""
-                  : `
-                    <div
-                      class="qty-control"
-                      aria-label="Quantity selector for ${escapeHtml(
-                        item.name
-                      )}"
-                    >
+              <div class="dish-bottom">
 
-                      <button
-                        type="button"
-                        aria-label="Decrease quantity"
-
-                        onclick="
-                          changeQty(
-                            '${safeJs(item.id)}',
-                            -1
-                          )
-                        "
-
-                        ${
-                          selectedQty <= 0
-                            ? "disabled"
-                            : ""
-                        }
-                      >
-                        −
-                      </button>
-
-
-                      <span class="qty-number">
-                        ${selectedQty}
+                ${
+                  soldOut
+                    ? `
+                      <span class="sold-badge">
+                        SOLD OUT
                       </span>
-
-
-                      <button
-                        type="button"
-                        aria-label="Increase quantity"
-
-                        onclick="
-                          changeQty(
-                            '${safeJs(item.id)}',
-                            1
-                          )
-                        "
-
-                        ${
-                          selectedQty >=
-                            availableQty ||
-                          !LUQMA_CONFIG.shopOpen
-                            ? "disabled"
-                            : ""
-                        }
+                    `
+                    : `
+                      <div
+                        class="qty-control"
+                        aria-label="Quantity selector for ${escapeHtml(
+                          item.name
+                        )}"
                       >
-                        +
-                      </button>
 
-                    </div>
-                  `
-              }
+                        <button
+                          type="button"
+                          aria-label="Decrease quantity"
+
+                          onclick="
+                            changeQty(
+                              '${safeJs(item.id)}',
+                              -1
+                            )
+                          "
+
+                          ${
+                            selectedQty <= 0
+                              ? "disabled"
+                              : ""
+                          }
+                        >
+                          −
+                        </button>
+
+
+                        <span class="qty-number">
+                          ${selectedQty}
+                        </span>
+
+
+                        <button
+                          type="button"
+                          aria-label="Increase quantity"
+
+                          onclick="
+                            changeQty(
+                              '${safeJs(item.id)}',
+                              1
+                            )
+                          "
+
+                          ${
+                            selectedQty >= availableQty ||
+                            !LUQMA_CONFIG.shopOpen
+                              ? "disabled"
+                              : ""
+                          }
+                        >
+                          +
+                        </button>
+
+                      </div>
+                    `
+                }
+
+              </div>
 
             </div>
 
-          </div>
+          </article>
 
-        </article>
-      `;
-    })
-    .join("");
+        `;
+
+      })
+      .join("");
 }
 
 
@@ -356,6 +443,7 @@ window.changeQty =
       !item ||
       !item.active
     ) {
+
       return;
     }
 
@@ -435,9 +523,9 @@ function cartTotal() {
     (sum, row) =>
       sum +
       row.qty *
-        Number(
-          row.item.price || 0
-        ),
+      Number(
+        row.item.price || 0
+      ),
     0
   );
 }
@@ -452,12 +540,14 @@ function renderCart() {
   const rows =
     cartRows();
 
+
   const itemCount =
     rows.reduce(
       (sum, row) =>
         sum + row.qty,
       0
     );
+
 
   const total =
     cartTotal();
@@ -483,7 +573,7 @@ function renderCart() {
     "visible",
 
     itemCount > 0 &&
-      LUQMA_CONFIG.shopOpen
+    LUQMA_CONFIG.shopOpen
   );
 
 
@@ -507,19 +597,18 @@ function renderCart() {
                   <small>
                     ${qty}
                     ×
-                    ${money(
-                      item.price
-                    )}
+                    ${money(item.price)}
                   </small>
 
                 </div>
 
+
                 <strong>
                   ${money(
                     qty *
-                      Number(
-                        item.price || 0
-                      )
+                    Number(
+                      item.price || 0
+                    )
                   )}
                 </strong>
 
@@ -546,9 +635,7 @@ function renderCart() {
 
 function openCheckout() {
 
-  if (
-    !LUQMA_CONFIG.shopOpen
-  ) {
+  if (!LUQMA_CONFIG.shopOpen) {
 
     toggleOverlay(
       "closedOverlay",
@@ -559,16 +646,12 @@ function openCheckout() {
   }
 
 
-  if (
-    !cartRows().length
-  ) {
+  if (!cartRows().length) {
     return;
   }
 
 
-  if (
-    !state.orderCode
-  ) {
+  if (!state.orderCode) {
 
     state.orderCode =
       makeOrderCode();
@@ -634,8 +717,19 @@ function updatePaymentUI() {
   const upiPanel =
     $("upiPanel");
 
+  const finalButton =
+    $("finalOrderBtn");
 
-  if (!upiPanel) {
+  const finalText =
+    $("finalOrderBtnText");
+
+
+  if (
+    !upiPanel ||
+    !finalButton ||
+    !finalText
+  ) {
+
     return;
   }
 
@@ -643,12 +737,13 @@ function updatePaymentUI() {
   const total =
     cartTotal();
 
-
   const method =
     state.paymentMethod;
 
 
-  /* Show UPI panel only for UPI */
+  /* =====================================================
+     SHOW / HIDE UPI PANEL
+     ===================================================== */
 
   upiPanel.classList.toggle(
     "hidden",
@@ -656,15 +751,13 @@ function updatePaymentUI() {
   );
 
 
-  /* ONLINE PAYMENT */
+  /* =====================================================
+     ONLINE PAYMENT
+     ===================================================== */
 
-  if (
-    method === "UPI"
-  ) {
+  if (method === "UPI") {
 
-    if (
-      !state.orderCode
-    ) {
+    if (!state.orderCode) {
 
       state.orderCode =
         makeOrderCode();
@@ -672,18 +765,7 @@ function updatePaymentUI() {
     }
 
 
-    const upiUri =
-      buildUpiUri(
-        total,
-        state.orderCode
-      );
-
-
     $("upiAmount").textContent =
-      money(total);
-
-
-    $("upiPayBtnAmount").textContent =
       money(total);
 
 
@@ -695,28 +777,55 @@ function updatePaymentUI() {
       LUQMA_CONFIG.upiPayeeName;
 
 
-    /* UPI APP BUTTON */
-
-    $("upiPayBtn").href =
-      upiUri;
-
-
-    /* STATIC QR IMAGE */
+    /* Static LUQMA QR */
 
     $("upiQrImage").src =
       "assets/images/QrCode.jpg";
+
+
+    const upiPayBtn =
+      $("upiPayBtn");
+
+
+    /* GOOGLE PAY */
+
+    if (
+      state.upiApp === "GPAY"
+    ) {
+
+      upiPayBtn.href =
+        buildGooglePayUri(
+          total,
+          state.orderCode
+        );
+
+
+      upiPayBtn.textContent =
+        `Open Google Pay • ${money(total)}`;
+
+    }
+
+    /* OTHER UPI APP */
+
+    else {
+
+      upiPayBtn.href =
+        buildUpiUri(
+          total,
+          state.orderCode
+        );
+
+
+      upiPayBtn.textContent =
+        `Pay ${money(total)} via UPI`;
+
+    }
   }
 
 
-  const finalButton =
-    $("finalOrderBtn");
-
-
-  const finalText =
-    $("finalOrderBtnText");
-
-
-  /* NOTHING SELECTED */
+  /* =====================================================
+     NO PAYMENT METHOD
+     ===================================================== */
 
   if (!method) {
 
@@ -732,11 +841,11 @@ function updatePaymentUI() {
   }
 
 
-  /* CASH ON DELIVERY */
+  /* =====================================================
+     COD
+     ===================================================== */
 
-  if (
-    method === "COD"
-  ) {
+  if (method === "COD") {
 
     finalButton.disabled =
       false;
@@ -750,11 +859,11 @@ function updatePaymentUI() {
   }
 
 
-  /* ONLINE PAYMENT */
+  /* =====================================================
+     UPI
+     ===================================================== */
 
-  if (
-    method === "UPI"
-  ) {
+  if (method === "UPI") {
 
     finalButton.disabled =
       !state.paymentMarkedPaid;
@@ -769,7 +878,7 @@ function updatePaymentUI() {
 
 
 /* =========================================================
-   UPI LINK
+   STANDARD UPI LINK
    ========================================================= */
 
 function buildUpiUri(
@@ -807,6 +916,48 @@ function buildUpiUri(
 
 
 /* =========================================================
+   GOOGLE PAY ANDROID DEEP LINK
+   ========================================================= */
+
+function buildGooglePayUri(
+  total,
+  orderCode
+) {
+
+  const params =
+    new URLSearchParams({
+
+      pa:
+        LUQMA_CONFIG.upiId,
+
+      pn:
+        LUQMA_CONFIG.upiPayeeName,
+
+      am:
+        Number(
+          total || 0
+        ).toFixed(2),
+
+      cu:
+        "INR",
+
+      tn:
+        `LUQMA ${orderCode}`
+
+    });
+
+
+  return (
+    `intent://pay?${params.toString()}` +
+    `#Intent;` +
+    `scheme=upi;` +
+    `package=com.google.android.apps.nbu.paisa.user;` +
+    `end`
+  );
+}
+
+
+/* =========================================================
    SEND ORDER TO WHATSAPP
    ========================================================= */
 
@@ -819,9 +970,7 @@ function sendOrderToWhatsApp(
 
   /* SHOP CLOSED */
 
-  if (
-    !LUQMA_CONFIG.shopOpen
-  ) {
+  if (!LUQMA_CONFIG.shopOpen) {
 
     closeCheckout();
 
@@ -891,9 +1040,7 @@ function sendOrderToWhatsApp(
   }
 
 
-  if (
-    phone.length < 10
-  ) {
+  if (phone.length < 10) {
 
     alert(
       "Please enter a valid phone number."
@@ -905,9 +1052,7 @@ function sendOrderToWhatsApp(
 
   /* PAYMENT METHOD */
 
-  if (
-    !state.paymentMethod
-  ) {
+  if (!state.paymentMethod) {
 
     alert(
       "Please choose a payment method."
@@ -917,11 +1062,10 @@ function sendOrderToWhatsApp(
   }
 
 
-  /* UPI REQUIRES CHECKBOX */
+  /* ONLINE PAYMENT */
 
   if (
-    state.paymentMethod ===
-      "UPI" &&
+    state.paymentMethod === "UPI" &&
     !state.paymentMarkedPaid
   ) {
 
@@ -939,9 +1083,7 @@ function sendOrderToWhatsApp(
 
   /* ORDER CODE */
 
-  if (
-    !state.orderCode
-  ) {
+  if (!state.orderCode) {
 
     state.orderCode =
       makeOrderCode();
@@ -953,19 +1095,22 @@ function sendOrderToWhatsApp(
     state.orderCode;
 
 
-  /* PAYMENT TEXT */
+  /* =====================================================
+     PAYMENT TEXT
+     ===================================================== */
 
   let paymentMethodText;
   let paymentStatusText;
 
 
   if (
-    state.paymentMethod ===
-    "UPI"
+    state.paymentMethod === "UPI"
   ) {
 
     paymentMethodText =
-      "UPI / Online";
+      state.upiApp === "GPAY"
+        ? "Google Pay"
+        : "UPI App";
 
 
     paymentStatusText =
@@ -979,11 +1124,12 @@ function sendOrderToWhatsApp(
 
     paymentStatusText =
       "PENDING — COD";
-
   }
 
 
-  /* WHATSAPP MESSAGE */
+  /* =====================================================
+     WHATSAPP MESSAGE
+     ===================================================== */
 
   const messageLines = [
 
@@ -1010,9 +1156,9 @@ function sendOrderToWhatsApp(
 
         `• ${qty} × ${item.name} — ${moneyPlain(
           qty *
-            Number(
-              item.price || 0
-            )
+          Number(
+            item.price || 0
+          )
         )}`
     ),
 
@@ -1045,7 +1191,9 @@ function sendOrderToWhatsApp(
     `https://wa.me/${LUQMA_CONFIG.orderWhatsApp}?text=${message}`;
 
 
-  /* BUTTON FEEDBACK */
+  /* =====================================================
+     BUTTON FEEDBACK
+     ===================================================== */
 
   const finalButton =
     $("finalOrderBtn");
@@ -1064,9 +1212,8 @@ function sendOrderToWhatsApp(
 
 
   /*
-   * IMPORTANT:
-   * Same-page redirect is more reliable
-   * than window.open() on mobile.
+   * Same-page redirect is generally
+   * more reliable on mobile.
    */
 
   window.location.href =
@@ -1074,8 +1221,7 @@ function sendOrderToWhatsApp(
 
 
   /*
-   * Restore button if customer
-   * returns from WhatsApp.
+   * Restore button if customer returns.
    */
 
   setTimeout(
@@ -1086,8 +1232,7 @@ function sendOrderToWhatsApp(
 
 
       if (
-        state.paymentMethod ===
-        "UPI"
+        state.paymentMethod === "UPI"
       ) {
 
         finalText.textContent =
@@ -1143,8 +1288,8 @@ function makeOrderCode() {
   const random =
     Math.floor(
       100 +
-        Math.random() *
-          900
+      Math.random() *
+      900
     );
 
 

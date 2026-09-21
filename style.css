@@ -1642,3 +1642,454 @@ a {
     justify-content: flex-end !important;
   }
 }
+
+/* =========================================================
+   LUQMA - PAYMENT UI FINAL FIX
+   ========================================================= */
+
+/* UPI panel */
+.upi-panel {
+  margin-top: 18px;
+  padding: 22px;
+
+  background: #f7fcf9;
+  border: 1px solid #cce5d7;
+  border-radius: 22px;
+}
+
+
+/* Amount */
+.upi-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 24px;
+}
+
+.upi-top > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.upi-top > div > span {
+  font-size: 13px;
+  color: #8b746b;
+}
+
+.upi-top strong {
+  font-size: 34px;
+  line-height: 1;
+  color: #25875f;
+}
+
+.upi-chip {
+  padding: 8px 13px;
+
+  border-radius: 999px;
+  background: #e4f3eb;
+
+  color: #25875f;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+
+/* =========================================
+   CHOOSE UPI APP
+   ========================================= */
+
+.upi-app-section {
+  margin-bottom: 18px;
+}
+
+.upi-app-title {
+  display: block;
+
+  margin-bottom: 10px;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  color: #64413a;
+}
+
+
+.upi-app-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 12px;
+
+  width: 100%;
+
+  margin: 0;
+}
+
+
+/* Individual option */
+
+.upi-app-choice {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr);
+
+  align-items: center;
+
+  gap: 11px;
+
+  min-width: 0;
+
+  padding: 14px;
+
+  border: 1px solid #e2d8d2;
+  border-radius: 14px;
+
+  background: #ffffff;
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+
+/* Selected card */
+
+.upi-app-choice:has(input:checked) {
+  border-color: #64413a;
+  background: #fff7ec;
+}
+
+
+/* Radio */
+
+.upi-app-choice input[type="radio"] {
+  appearance: auto;
+  -webkit-appearance: radio;
+
+  width: 18px;
+  height: 18px;
+
+  min-width: 18px;
+
+  margin: 0;
+
+  accent-color: #64413a;
+
+  cursor: pointer;
+}
+
+
+/* Text */
+
+.upi-app-copy {
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+
+  gap: 3px;
+}
+
+.upi-app-copy strong {
+  display: block;
+
+  color: #4d342e;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  line-height: 1.3;
+}
+
+.upi-app-copy small {
+  display: block;
+
+  color: #8b746b;
+
+  font-size: 11px;
+
+  line-height: 1.4;
+}
+
+
+/* =========================================
+   PAYMENT BUTTON
+   ========================================= */
+
+.upi-pay-btn {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  min-height: 54px;
+
+  margin-top: 4px;
+
+  padding: 14px 18px;
+
+  border-radius: 14px;
+
+  background: #2d8765;
+  color: #ffffff;
+
+  text-decoration: none;
+
+  font-size: 16px;
+  font-weight: 700;
+
+  text-align: center;
+
+  box-sizing: border-box;
+}
+
+.upi-pay-btn:hover {
+  background: #267758;
+}
+
+
+/* =========================================
+   QR DIVIDER
+   ========================================= */
+
+.upi-divider {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  margin: 22px 0;
+}
+
+.upi-divider::before,
+.upi-divider::after {
+  content: "";
+
+  flex: 1;
+
+  height: 1px;
+
+  background: #e1d9d4;
+}
+
+.upi-divider span {
+  flex-shrink: 0;
+
+  color: #9b847a;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  letter-spacing: 0.08em;
+}
+
+
+/* =========================================
+   QR + UPI DETAILS
+   ========================================= */
+
+.upi-grid {
+  display: grid;
+
+  grid-template-columns: 180px minmax(0, 1fr);
+
+  align-items: center;
+
+  gap: 24px;
+}
+
+
+.qr-card {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  padding: 12px;
+
+  background: #ffffff;
+
+  border: 1px solid #e4dad5;
+  border-radius: 16px;
+}
+
+
+.qr-card img {
+  display: block;
+
+  width: 150px;
+  height: 150px;
+
+  object-fit: contain;
+}
+
+
+.qr-card small {
+  margin-top: 7px;
+
+  color: #987f75;
+
+  font-size: 10px;
+}
+
+
+.upi-details {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  gap: 5px;
+
+  min-width: 0;
+}
+
+
+.upi-details > span {
+  color: #9a8277;
+
+  font-size: 11px;
+}
+
+
+.upi-details > strong {
+  color: #64413a;
+
+  font-size: 16px;
+
+  overflow-wrap: anywhere;
+}
+
+
+.upi-details small {
+  color: #9a8277;
+
+  font-size: 11px;
+}
+
+
+/* =========================================
+   PAYMENT CONFIRMATION
+   ========================================= */
+
+.paid-confirm {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  width: 100%;
+
+  margin-top: 20px;
+
+  padding: 15px;
+
+  box-sizing: border-box;
+
+  background: #ffffff;
+
+  border: 1px solid #e5dcd7;
+  border-radius: 14px;
+
+  cursor: pointer;
+}
+
+
+.paid-confirm input[type="checkbox"] {
+  appearance: auto;
+  -webkit-appearance: checkbox;
+
+  width: 19px;
+  height: 19px;
+
+  min-width: 19px;
+
+  margin: 0;
+
+  accent-color: #64413a;
+}
+
+
+.paid-confirm span {
+  color: #5b4038;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+
+.payment-warning {
+  margin: 12px 2px 0;
+
+  color: #90786e;
+
+  font-size: 11px;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 600px) {
+
+  .upi-panel {
+    padding: 18px;
+  }
+
+  .upi-top strong {
+    font-size: 30px;
+  }
+
+
+  /* Stack Google Pay / Other UPI */
+
+  .upi-app-options {
+    grid-template-columns: 1fr;
+  }
+
+
+  .upi-app-choice {
+    padding: 13px;
+  }
+
+
+  /* QR becomes centered */
+
+  .upi-grid {
+    grid-template-columns: 1fr;
+
+    gap: 16px;
+  }
+
+
+  .qr-card {
+    width: fit-content;
+
+    margin: 0 auto;
+  }
+
+
+  .upi-details {
+    align-items: center;
+
+    text-align: center;
+  }
+
+
+  .upi-pay-btn {
+    min-height: 52px;
+
+    font-size: 15px;
+  }
+}
