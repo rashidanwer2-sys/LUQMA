@@ -5,7 +5,6 @@
 const state = {
   cart: new Map(),
   paymentMethod: "",
-  upiApp: "GPAY",
   paymentMarkedPaid: false,
   orderCode: ""
 };
@@ -170,30 +169,6 @@ function bindEvents() {
 
 
   /* =====================================================
-     UPI APP
-     ===================================================== */
-
-  document
-    .querySelectorAll(
-      'input[name="upiApp"]'
-    )
-    .forEach((input) => {
-
-      input.addEventListener(
-        "change",
-        (event) => {
-
-          state.upiApp =
-            event.target.value;
-
-          updatePaymentUI();
-
-        }
-      );
-    });
-
-
-  /* =====================================================
      PAYMENT CONFIRMATION
      ===================================================== */
 
@@ -341,15 +316,17 @@ function renderMenu() {
                     `
                     : `
                       <div
-                        class="qty-control"
-                        aria-label="Quantity selector for ${escapeHtml(
-                          item.name
-                        )}"
-                      >
+  class="qty-control"
+  data-item-id="${escapeHtml(item.id)}"
+  aria-label="Quantity selector for ${escapeHtml(
+    item.name
+  )}"
+>
 
                         <button
-                          type="button"
-                          aria-label="Decrease quantity"
+  type="button"
+  data-action="minus"
+  aria-label="Decrease quantity"
 
                           onclick="
                             changeQty(
@@ -374,8 +351,9 @@ function renderMenu() {
 
 
                         <button
-                          type="button"
-                          aria-label="Increase quantity"
+  type="button"
+  data-action="plus"
+  aria-label="Increase quantity"
 
                           onclick="
                             changeQty(
@@ -482,10 +460,72 @@ window.changeQty =
 
     }
 
-
-    renderMenu();
-    renderCart();
+updateDishQuantity(id);
+renderCart();
   };
+
+
+  function updateDishQuantity(id) {
+
+  const item = LUQMA_CONFIG.items.find(
+    (entry) => entry.id === id
+  );
+
+  if (!item) return;
+
+  const selectedQty =
+    state.cart.get(id) || 0;
+
+  const maximum =
+    Math.max(
+      0,
+      Number(item.quantity || 0)
+    );
+
+  /* Find the quantity control for this dish */
+  const buttons =
+    document.querySelectorAll(
+      `[data-item-id="${CSS.escape(id)}"]`
+    );
+
+  buttons.forEach((control) => {
+
+    const minusBtn =
+      control.querySelector(
+        '[data-action="minus"]'
+      );
+
+    const plusBtn =
+      control.querySelector(
+        '[data-action="plus"]'
+      );
+
+    const qtyNumber =
+      control.querySelector(
+        ".qty-number"
+      );
+
+
+    if (qtyNumber) {
+      qtyNumber.textContent =
+        selectedQty;
+    }
+
+
+    if (minusBtn) {
+      minusBtn.disabled =
+        selectedQty <= 0;
+    }
+
+
+    if (plusBtn) {
+      plusBtn.disabled =
+        selectedQty >= maximum ||
+        !LUQMA_CONFIG.shopOpen;
+    }
+
+  });
+}
 
 
 /* =========================================================
@@ -716,6 +756,10 @@ function toggleOverlay(
    PAYMENT UI - FINAL FIX
    ========================================================= */
 
+/* =========================================================
+   PAYMENT UI
+   ========================================================= */
+
 function updatePaymentUI() {
 
   const upiPanel = $("upiPanel");
@@ -730,16 +774,9 @@ function updatePaymentUI() {
   const total = cartTotal();
   const method = state.paymentMethod;
 
-  /* =====================================================
-     ALWAYS KEEP FINAL BUTTON VISIBLE
-     ===================================================== */
-
-  finalButton.style.display = "flex";
-  finalButton.style.visibility = "visible";
-
 
   /* =====================================================
-     NO PAYMENT METHOD SELECTED
+     NO PAYMENT METHOD
      ===================================================== */
 
   if (!method) {
@@ -761,17 +798,14 @@ function updatePaymentUI() {
 
   if (method === "COD") {
 
-    // Hide online payment section
     upiPanel.classList.add("hidden");
 
-    // Online payment confirmation is irrelevant for COD
     state.paymentMarkedPaid = false;
 
     if (paidConfirm) {
       paidConfirm.checked = false;
     }
 
-    // Enable COD button
     finalButton.disabled = false;
 
     finalText.textContent =
@@ -782,30 +816,20 @@ function updatePaymentUI() {
 
 
   /* =====================================================
-     ONLINE / UPI PAYMENT
+     PAY ONLINE
      ===================================================== */
 
   if (method === "UPI") {
 
-    // Show online payment panel
     upiPanel.classList.remove("hidden");
 
 
-    /* -----------------------------------------
-       ORDER CODE
-       ----------------------------------------- */
-
     if (!state.orderCode) {
-
-      state.orderCode =
-        makeOrderCode();
-
+      state.orderCode = makeOrderCode();
     }
 
 
-    /* -----------------------------------------
-       PAYMENT DETAILS
-       ----------------------------------------- */
+    /* Amount */
 
     if ($("upiAmount")) {
 
@@ -815,6 +839,8 @@ function updatePaymentUI() {
     }
 
 
+    /* UPI ID */
+
     if ($("upiIdText")) {
 
       $("upiIdText").textContent =
@@ -822,6 +848,8 @@ function updatePaymentUI() {
 
     }
 
+
+    /* Payee */
 
     if ($("upiPayeeText")) {
 
@@ -831,9 +859,7 @@ function updatePaymentUI() {
     }
 
 
-    /* -----------------------------------------
-       QR CODE
-       ----------------------------------------- */
+    /* QR */
 
     if ($("upiQrImage")) {
 
@@ -843,9 +869,9 @@ function updatePaymentUI() {
     }
 
 
-    /* -----------------------------------------
-       GOOGLE PAY / OTHER UPI
-       ----------------------------------------- */
+    /* =====================================================
+       UPI PAYMENT BUTTON
+       ===================================================== */
 
     const upiPayBtn =
       $("upiPayBtn");
@@ -853,36 +879,44 @@ function updatePaymentUI() {
 
     if (upiPayBtn) {
 
-      if (state.upiApp === "GPAY") {
+      const upiUri =
+        buildUpiUri(
+          total,
+          state.orderCode
+        );
 
-        upiPayBtn.href =
-          buildGooglePayUri(
-            total,
-            state.orderCode
-          );
 
-        upiPayBtn.textContent =
-          `Open Google Pay • ${money(total)}`;
+      upiPayBtn.href =
+        upiUri;
 
-      } else {
 
-        upiPayBtn.href =
-          buildUpiUri(
-            total,
-            state.orderCode
-          );
+      upiPayBtn.textContent =
+        `Pay ${money(total)} using UPI App`;
 
-        upiPayBtn.textContent =
-          `Pay ${money(total)} via UPI`;
 
-      }
+      /*
+       * Important:
+       * Do NOT open WhatsApp here.
+       *
+       * The upi:// link is handed to Android,
+       * which can open/show compatible UPI apps.
+       */
 
+      upiPayBtn.onclick =
+        function(event) {
+
+          event.preventDefault();
+
+          window.location.href =
+            upiUri;
+
+        };
     }
 
 
-    /* -----------------------------------------
-       FINAL PAID ORDER BUTTON
-       ----------------------------------------- */
+    /* =====================================================
+       FINAL ORDER BUTTON
+       ===================================================== */
 
     if (state.paymentMarkedPaid) {
 
@@ -902,98 +936,32 @@ function updatePaymentUI() {
 
     return;
   }
-
-
-  /* =====================================================
-     SAFETY FALLBACK
-     ===================================================== */
-
-  upiPanel.classList.add("hidden");
-
-  finalButton.disabled = true;
-
-  finalText.textContent =
-    "Choose payment method";
 }
 
 
 /* =========================================================
-   STANDARD UPI LINK
+   UPI PAYMENT LINK
    ========================================================= */
 
-function buildUpiUri(
-  total,
-  orderCode
-) {
+function buildUpiUri(total, orderCode) {
 
   const params =
     new URLSearchParams({
 
-      pa:
-        LUQMA_CONFIG.upiId,
+      pa: LUQMA_CONFIG.upiId,
 
-      pn:
-        LUQMA_CONFIG.upiPayeeName,
+      pn: LUQMA_CONFIG.upiPayeeName,
 
-      am:
-        Number(
-          total || 0
-        ).toFixed(2),
+      am: Number(total || 0).toFixed(2),
 
-      cu:
-        "INR",
+      cu: "INR",
 
-      tn:
-        `LUQMA ${orderCode}`
+      tn: `LUQMA ${orderCode}`
 
     });
 
 
-  return (
-    `upi://pay?${params.toString()}`
-  );
-}
-
-
-/* =========================================================
-   GOOGLE PAY ANDROID DEEP LINK
-   ========================================================= */
-
-function buildGooglePayUri(
-  total,
-  orderCode
-) {
-
-  const params =
-    new URLSearchParams({
-
-      pa:
-        LUQMA_CONFIG.upiId,
-
-      pn:
-        LUQMA_CONFIG.upiPayeeName,
-
-      am:
-        Number(
-          total || 0
-        ).toFixed(2),
-
-      cu:
-        "INR",
-
-      tn:
-        `LUQMA ${orderCode}`
-
-    });
-
-
-  return (
-    `intent://pay?${params.toString()}` +
-    `#Intent;` +
-    `scheme=upi;` +
-    `package=com.google.android.apps.nbu.paisa.user;` +
-    `end`
-  );
+  return `upi://pay?${params.toString()}`;
 }
 
 
@@ -1143,28 +1111,22 @@ function sendOrderToWhatsApp(
   let paymentStatusText;
 
 
-  if (
-    state.paymentMethod === "UPI"
-  ) {
+if (state.paymentMethod === "UPI") {
 
-    paymentMethodText =
-      state.upiApp === "GPAY"
-        ? "Google Pay"
-        : "UPI App";
+  paymentMethodText =
+    "UPI / Online";
 
+  paymentStatusText =
+    "PAID — CUSTOMER MARKED PAID";
 
-    paymentStatusText =
-      "PAID — CUSTOMER MARKED PAID";
+} else {
 
-  } else {
+  paymentMethodText =
+    "Cash on Delivery";
 
-    paymentMethodText =
-      "Cash on Delivery";
-
-
-    paymentStatusText =
-      "PENDING — COD";
-  }
+  paymentStatusText =
+    "PENDING — COD";
+}
 
 
   /* =====================================================

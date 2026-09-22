@@ -9,8 +9,8 @@ const LUQMA_CONFIG = {
   whatsappGroupLink: "https://chat.whatsapp.com/Ejlv5Ig6wrPHNHMwYOwmPM",
 
   // UPI details
-  // upiId: "afreenjakati8-1@oksbi",
-  // upiPayeeName: "Afreen Jakati",
+  upiId: "afreenjakati8-1@oksbi",
+  upiPayeeName: "Afreen Jakati",
 
   items: [
     {
