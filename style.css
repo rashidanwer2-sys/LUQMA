@@ -1181,7 +1181,7 @@ a {
   }
 
   .checkout-scroll {
-    padding: 18px;
+    padding: 18px 18px 30px;
   }
 
   .payment-choice-grid {
@@ -1287,7 +1287,7 @@ a {
   }
 
   .checkout-scroll {
-    padding: 15px;
+    padding: 15px 15px 30px;
   }
 
   .payment-box {
